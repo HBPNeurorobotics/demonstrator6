@@ -1,0 +1,119 @@
+import hbp_nrp_excontrol.nrp_states as states
+from smach import StateMachine
+from smach.state import State
+
+from gazebo_msgs.srv import ApplyBodyWrench, GetModelState, DeleteModel, SpawnEntity, SpawnEntityRequest
+from geometry_msgs.msg import Wrench, Vector3, Point
+import rospy
+from rospy import ServiceProxy, wait_for_service
+
+
+FINISHED = 'FINISHED'
+ERROR = 'ERROR'
+PREEMPTED = 'PREEMPTED'
+
+sm = StateMachine(outcomes=[FINISHED, ERROR, PREEMPTED])
+
+import hbp_nrp_excontrol.nrp_states as states
+
+ball_name = "ball"
+ball_sdf_xml = """
+<?xml version='1.0'?>
+<sdf version='1.5'>
+  <model name='{ball_name}'>
+    <pose>0 0 0 0 0 0</pose>
+    <link name='{ball_name}'>
+      <inertial>
+        <mass>0.057</mass>
+      </inertial>
+      <collision name='collision'>
+        <geometry>
+          <sphere>
+            <radius>.034</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name='visual'>
+        <geometry>
+          <sphere>
+            <radius>.034</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Green</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
+"""
+
+class ThrowBallState(State):
+    def __init__(self, ball_name, sdf_xml, outcomes=['success', 'aborted']):
+        super(ThrowBallState, self).__init__(outcomes=outcomes)
+        self._ball_name = ball_name
+        self._spawn_proxy = rospy.ServiceProxy('/gazebo/spawn_sdf_entity',
+                                               SpawnEntity, persistent=True)
+        self._wrench_proxy = ServiceProxy('/gazebo/apply_body_wrench',
+                                          ApplyBodyWrench, persistent=True)
+
+        self._ball_msg = SpawnEntityRequest()
+        self._ball_msg.entity_name = self._ball_name
+        self._ball_msg.entity_xml = sdf_xml.format(ball_name=ball_name)
+        self._ball_msg.initial_pose.position.x = 3.
+        self._ball_msg.initial_pose.position.y = -0.28
+        self._ball_msg.initial_pose.position.z = 0.7
+        self._ball_msg.reference_frame = "world"
+
+
+    def execute(self, userdata):
+        self._spawn_proxy(self._ball_msg)
+        force = Vector3(-5., 0., 1.5)
+        wrench =  Wrench(force, Vector3(0.0, 0.0, 0.0))
+        self._wrench_proxy(self._ball_name+"::ball", "world", Point(),
+                           wrench, rospy.Time(0.), rospy.Duration(0.1))
+        return 'success'
+
+class FlyingBallState(State):
+    def __init__(self, ball_name, rate=1., outcomes=['success', 'aborted'], ):
+        super(FlyingBallState, self).__init__(outcomes=outcomes)
+        self._rate = rospy.Rate(rate)
+        self._ball_name = ball_name
+        self._state_proxy = ServiceProxy('/gazebo/get_model_state',
+                                         GetModelState, persistent=True)
+        self._delete_proxy = ServiceProxy('/gazebo/delete_model',
+                                         DeleteModel, persistent=True)
+
+    def execute(self, userdata):
+        start_time = rospy.Time.now()
+        while not self.ball_lower_than(0.1):
+            self._rate.sleep()
+        self._delete_proxy(self._ball_name)
+        return 'success'
+
+    def ball_lower_than(self, z_threshold):
+        try:
+            current_ball_state = self._state_proxy(ball_name, "world")
+        except rospy.ServiceException as exc:
+            clientLogger.info(str(exc))
+            return False
+        return current_ball_state.pose.position.z < z_threshold
+
+
+with sm:
+    # Waits until a simulation time of 20s is reached
+    StateMachine.add(
+      "throw_ball",
+      ThrowBallState(ball_name, ball_sdf_xml),
+      transitions = {"success": "flying_ball",
+                     "aborted": ERROR}
+    )
+    StateMachine.add(
+     "flying_ball",
+     FlyingBallState(ball_name),
+     transitions = {"success": "throw_ball",
+                    "aborted": ERROR}
+    )
