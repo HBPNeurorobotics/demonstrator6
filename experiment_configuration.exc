@@ -2,7 +2,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xmlns="http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig" xsi:schemaLocation="http://schemas.humanbrainproject.eu/SP10/2014/ExDConfig ../ExDConfFile.xsd">
   <name>Demonstrator 6</name>
-  <thumbnail>ExDTutorialBaseball.jpg</thumbnail>
+  <thumbnail>demonstrator6.jpg</thumbnail>
   <description>Reaching and grasping from a conveyor belt</description>
   <tags>icub robotics tutorial solution baseball</tags>
   <timeout>86400</timeout>

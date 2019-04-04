@@ -236,20 +236,10 @@
       </plugin>
     </model>
     <state world_name="default">
-      <sim_time>213 422000000</sim_time>
+      <sim_time>215 662000000</sim_time>
       <real_time>0 0</real_time>
-      <wall_time>1554370495 648688637</wall_time>
-      <iterations>206381</iterations>
-      <model name="ball">
-        <pose frame="">1.74466 -1.60341 0.963387 0.000387 0.000352 -5.9e-05</pose>
-        <scale>1 1 1</scale>
-        <link name="ball">
-          <pose frame="">1.74466 -1.60341 0.963387 0.000387 0.000352 -5.9e-05</pose>
-          <velocity>0.499811 -0.014887 -0.001127 0.003162 0.002985 4.6e-05</velocity>
-          <acceleration>0 0 -9.8 0 -0 0</acceleration>
-          <wrench>0 0 -0.5586 0 -0 0</wrench>
-        </link>
-      </model>
+      <wall_time>1554371004 543925984</wall_time>
+      <iterations>0</iterations>
       <model name="ground">
         <pose frame="">0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -261,19 +251,19 @@
         </link>
       </model>
       <model name="hbp/conveyor_0">
-        <pose frame="">-1.31674 -0.875636 0.02631 0 0 -0.054803</pose>
+        <pose frame="">-1.31671 -0.876838 0.023994 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name="conveyor_belt::belt">
-          <pose frame="">0.221992 -1.28253 0.82131 -1e-06 -0 -0.054803</pose>
-          <velocity>0.498288 -0.027586 -0.00593 -0.02553 0.010399 -0.003949</velocity>
-          <acceleration>0.830183 14.8045 8.31912 1.86066 0.48624 2.28402</acceleration>
-          <wrench>0.830183 14.8045 8.31912 0 -0 0</wrench>
+          <pose frame="">0.251268 -1.19884 0.818994 -1e-06 0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
         <link name="conveyor_belt::link">
-          <pose frame="">-1.31674 -0.875636 0.02631 0 0 -0.054803</pose>
-          <velocity>-0.000938 0.00041 -0.005862 -0.025649 0.010383 -0.004015</velocity>
-          <acceleration>7.53815 2.34726 -2.27914 -1.35382 1.4851 -0.832223</acceleration>
-          <wrench>7538.15 2347.26 -2279.14 0 -0 0</wrench>
+          <pose frame="">-1.31671 -0.876838 0.023994 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name="nrppanel">
@@ -290,57 +280,5 @@
         <pose frame="">-11.8208 -19.3843 17.2198 0 -0 0</pose>
       </light>
     </state>
-    <model name="ball">
-      <link name="ball">
-        <inertial>
-          <mass>0.057</mass>
-          <inertia>
-            <ixx>1</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>1</iyy>
-            <iyz>0</iyz>
-            <izz>1</izz>
-          </inertia>
-        </inertial>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.1 0.1 0.1</size>
-            </box>
-          </geometry>
-          <material>
-            <script>
-              <uri>file://media/materials/scripts/gazebo.material</uri>
-              <name>Gazebo/Green</name>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-        <gravity>1</gravity>
-      </link>
-      <pose frame="">0 -1.35 1.5 0 -0 0</pose>
-    </model>
   </world>
 </sdf>

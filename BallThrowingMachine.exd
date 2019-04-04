@@ -64,7 +64,7 @@ class ThrowBallState(State):
         self._ball_msg.entity_name = self._ball_name
         self._ball_msg.entity_xml = sdf_xml.format(ball_name=ball_name)
         self._ball_msg.initial_pose.position.x = 0.
-        self._ball_msg.initial_pose.position.y = -1.35
+        self._ball_msg.initial_pose.position.y = -1.2
         self._ball_msg.initial_pose.position.z = 1.5
         self._ball_msg.reference_frame = "world"
 
