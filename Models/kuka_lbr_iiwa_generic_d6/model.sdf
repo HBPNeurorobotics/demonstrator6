@@ -1,0 +1,545 @@
+<sdf version='1.6'>
+  <model name='kuka_lbr_iiwa_14_r820'>
+    <link name='base_link'>
+      <pose >0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose >-0.1 0 0.07 0 -0 0</pose>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.06</iyy>
+          <iyz>0</iyz>
+          <izz>0.03</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/collision/base_link.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/visual/base_link.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name='fixed' type='revolute'>
+      <child>base_link</child>
+      <parent>world</parent>
+      <axis>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+        </limit>
+        <dynamics>
+          <damping>10</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <link name='link_1'>
+      <pose >0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose >0 -0.03 0.12 0 -0 0</pose>
+        <mass>4</mass>
+        <inertia>
+          <ixx>0.1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.09</iyy>
+          <iyz>0</iyz>
+          <izz>0.02</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_1_collision'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/collision/link_1.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='link_1_visual'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/visual/link_1.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name='joint_a1' type='revolute'>
+      <child>link_1</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.9668</lower>
+          <upper>2.9668</upper>
+          <effort>20</effort>
+          <velocity>1.4834</velocity>
+        </limit>
+        <dynamics>
+        	<damping>10</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='link_2'>
+      <pose >-0.000436 0 0.36 0 -0 0</pose>
+      <inertial>
+        <pose >0.0003 0.059 0.042 0 -0 0</pose>
+        <mass>4</mass>
+        <inertia>
+          <ixx>0.05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.018</iyy>
+          <iyz>0</iyz>
+          <izz>0.044</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_2_collision'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/collision/link_2.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='link_2_visual'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/visual/link_2.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='joint_a2' type='revolute'>
+      <child>link_2</child>
+      <parent>link_1</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-2.0942</lower>
+          <upper>2.0942</upper>
+          <effort>20</effort>
+          <velocity>1.4834</velocity>
+        </limit>
+        <dynamics>
+        	<damping>10</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+
+    <link name='link_3'>
+      <pose >-0.000436 0 0.36 0 -0 0</pose>
+      <inertial>
+        <pose >0 0.03 0.13 0 -0 0</pose>
+        <mass>3</mass>
+        <inertia>
+          <ixx>0.08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.075</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_3_collision'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/collision/link_3.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='link_3_visual'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/visual/link_3.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='joint_a3' type='revolute'>
+      <child>link_3</child>
+      <parent>link_2</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.9668</lower>
+          <upper>2.9668</upper>
+          <effort>20</effort>
+          <velocity>1.7452</velocity>
+        </limit>
+        <dynamics>
+        	<damping>10</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+
+
+    <link name='link_4'>
+      <pose >0 0 0.78 0 -0 0</pose>
+      <inertial>
+        <pose >0 0.067 0.034 0 -0 0</pose>
+        <mass>2.7</mass>
+        <inertia>
+          <ixx>0.03</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.029</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_4_collision'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/collision/link_4.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='link_4_visual'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/visual/link_4.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='joint_a4' type='revolute'>
+      <child>link_4</child>
+      <parent>link_3</parent>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-2.0942</lower>
+          <upper>2.0942</upper>
+          <effort>20</effort>
+          <velocity>1.3089</velocity>
+        </limit>
+        <dynamics>
+        	<damping>10</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='link_5'>
+      <pose >0 0 0.78 0 -0 0</pose>
+      <inertial>
+        <pose >0.0001 0.021 0.076 0 -0 0</pose>
+        <mass>1.7</mass>
+        <inertia>
+          <ixx>0.02</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.018</iyy>
+          <iyz>0</iyz>
+          <izz>0.005</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_5_collision'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/collision/link_5.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='link_5_visual'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/visual/link_5.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+
+
+    <joint name='joint_a5' type='revolute'>
+      <child>link_5</child>
+      <parent>link_4</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.9668</lower>
+          <upper>2.9668</upper>
+          <effort>20</effort>
+          <velocity>2.2688</velocity>
+        </limit>
+        <dynamics>
+        	<damping>10</damping>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='link_6'>
+      <pose >0 0 1.18 0 -0 0</pose>
+      <inertial>
+        <pose>0 0.0006 0.0004 0 -0 0</pose>
+        <mass>1.8</mass>
+        <inertia>
+          <ixx>0.005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0036</iyy>
+          <iyz>0</iyz>
+          <izz>0.0047</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_6_collision'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/collision/link_6.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='link_6_visual'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/visual/link_6.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='joint_a6' type='revolute'>
+      <child>link_6</child>
+      <parent>link_5</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <link name='link_7'>
+      <pose >0 0 1.18 0 -0 0</pose>
+      <inertial>
+        <pose >0 0 0.02 0 -0 0</pose>
+        <mass>0.3</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_7_collision'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/collision/link_7.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='link_7_visual'>
+        <pose >0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://kuka_lbr_iiwa_generic_d6/meshes/visual/link_7.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='joint_a7' type='revolute'>
+      <child>link_7</child>
+      <parent>link_6</parent>
+       <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+
+
+
+
+    <include>
+      <uri>model://fh_desc</uri>
+      <pose frame=''>-1.182 0 1.02 1.57  0 0</pose>
+    </include>
+
+
+    <joint name='joint_a8' type='revolute'>
+      <child>smart_grasping_sandbox::H1_F1_base_link</child>
+      <parent>link_5</parent>
+       <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+      <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>20</effort>
+          <velocity>2.2688</velocity>
+        </limit>
+    </joint>
+
+    <joint name='joint_a9' type='revolute'>
+      <child>smart_grasping_sandbox::H1_F2_base_link</child>
+      <parent>link_5</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+      <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>20</effort>
+          <velocity>2.2688</velocity>
+        </limit>
+    </joint>
+
+
+    <joint name='joint_a10' type='revolute'>
+      <child>smart_grasping_sandbox::H1_F3_base_link</child>
+      <parent>link_5</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+      <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>20</effort>
+          <velocity>2.2688</velocity>
+        </limit>
+    </joint>-
+
+
+    <plugin filename="libgeneric_controller_plugin.so" name="baxter_controller">
+   
+  
+    <controller joint_name="joint_a1">
+        <type>position</type>
+        <pid>400 1 5</pid>
+    </controller>
+    <controller joint_name="joint_a2">
+        <type>position</type>
+        <pid>400 1 5</pid>
+    </controller>
+    <controller joint_name="joint_a3">
+        <type>position</type>
+        <pid>50 1 5</pid>
+    </controller>
+    <controller joint_name="joint_a4">
+        <type>position</type>
+        <pid>20 0.1 0.5</pid>
+    </controller>
+    <controller joint_name="joint_a5">
+        <type>position</type>
+        <pid>10 0.1 0.5</pid>
+    </controller>
+    <controller joint_name="joint_a6">
+        <type>position</type>
+        <pid>5 0.1 0.5</pid>
+    </controller>
+    <controller joint_name="joint_a7">
+        <type>position</type>
+        <pid>5 0.1 0.5</pid> 
+    </controller>
+    <controller joint_name="joint_a8">
+        <type>position</type>
+        <pid>50 1 5</pid>
+    </controller>
+    <controller joint_name="joint_a9">
+        <type>position</type>
+       <pid>50 1 5</pid>
+    </controller>
+    <controller joint_name="joint_a10">
+        <type>position</type>
+        <pid>50 1 5</pid>
+    </controller>
+
+    <controller joint_name="smart_grasping_sandbox::H1_F1J1">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+    <controller joint_name="smart_grasping_sandbox::H1_F1J2">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+    <controller joint_name="smart_grasping_sandbox::H1_F1J3">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+    <controller joint_name="smart_grasping_sandbox::H1_F1J1">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+      <controller joint_name="smart_grasping_sandbox::H1_F2J1">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+    <controller joint_name="smart_grasping_sandbox::H1_F2J2">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+    <controller joint_name="smart_grasping_sandbox::H1_F2J3">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+    <controller joint_name="smart_grasping_sandbox::H1_F3J1">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+    <controller joint_name="smart_grasping_sandbox::H1_F3J2">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+    <controller joint_name="smart_grasping_sandbox::H1_F3J3">
+        <type>position</type>
+        <pid>0.1 0.01 0.01</pid>
+    </controller>
+    </plugin>
+  
+    <static>0</static>
+
+  </model>
+</sdf>
