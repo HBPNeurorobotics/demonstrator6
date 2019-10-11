@@ -211,6 +211,22 @@
         <kinematic>0</kinematic>
         <gravity>1</gravity>
       </link>
+      <joint name="world_conveyor" type="revolute">
+        <parent>world</parent>
+        <child>conveyor_belt::link</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+          </limit>
+          <use_parent_model_frame>0</use_parent_model_frame>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
       <joint name="conveyor_belt::belt_joint" type="prismatic">
         <parent>conveyor_belt::link</parent>
         <child>conveyor_belt::belt</child>
