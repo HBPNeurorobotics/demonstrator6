@@ -57,8 +57,8 @@ class ThrowBallState(State):
         self._ball_name = ball_name
         self._spawn_proxy = rospy.ServiceProxy('/gazebo/spawn_sdf_entity',
                                                SpawnEntity, persistent=True)
-        self._wrench_proxy = ServiceProxy('/gazebo/apply_body_wrench',
-                                          ApplyBodyWrench, persistent=True)
+        #self._wrench_proxy = ServiceProxy('/gazebo/apply_body_wrench',
+        #                                  ApplyBodyWrench, persistent=True)
 
         self._ball_msg = SpawnEntityRequest()
         self._ball_msg.entity_name = self._ball_name
