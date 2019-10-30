@@ -17,6 +17,7 @@ def img_to_pred(t, camera, plot_topic, pred_msg, model, model_path,
     # Imports and paths
     import os
     import torch
+    import torch.nn.functional as F
     import numpy
     from prednet   import PredNet
     from cv_bridge import CvBridge
@@ -30,8 +31,8 @@ def img_to_pred(t, camera, plot_topic, pred_msg, model, model_path,
     max_pix_value  = 1.0
     normalizer     = 255.0/max_pix_value
     C_channels     = 3  #  1 or 3 (color channels)
-    A_channels     = (C_channels, n_feat*4, n_feat*8, n_feat*16, n_feat*8, n_feat*4, n_feat*2)
-    R_channels     = (C_channels, n_feat*4, n_feat*8, n_feat*16, n_feat*8, n_feat*4, n_feat*2)
+    A_channels     = (C_channels, n_feat*4, n_feat*8, n_feat*16)  #, n_feat*8, n_feat*4, n_feat*2)
+    R_channels     = (C_channels, n_feat*4, n_feat*8, n_feat*16)  #, n_feat*8, n_feat*4, n_feat*2)
     local_path     = '/resources/model'+str(n_feat)+'.pt'
     new_model_path = os.getcwd()+local_path
     trained_w_path = os.environ['HBP']+'/Experiments/demonstrator6'+local_path
@@ -58,9 +59,9 @@ def img_to_pred(t, camera, plot_topic, pred_msg, model, model_path,
             cam_img = cam_img[:,:,1]  # .mean(axis=2)
             cam_img = torch.tensor(cam_img, device=device).unsqueeze(dim=2).permute(2,1,0)
         img_shp = cam_img.shape
-        cam_img = F.pad(cam_img, (8,8), 'constant', 0.0)  # makes input cols 256 instead of 240
+        # cam_img = F.pad(cam_img, (8,8), 'constant', 0.0)  # makes input cols 256 instead of 240
         if model_inputs.value is None:
-            model_inputs.value = torch.zeros((1,nt)+img_shp, device=device)
+            model_inputs.value = torch.zeros((1,nt)+cam_img.shape, device=device)
 
         # Update the model or the mode, if needed
         run_step.value = run_step.value + 1
@@ -128,14 +129,12 @@ def img_to_pred(t, camera, plot_topic, pred_msg, model, model_path,
                     with torch.no_grad():
                         pred, states = model.value(model_inputs.value[:,-t_extrap:,:,:,:], nt)
 
-                    clientLogger.info(str(len(states)) + ' ' + str(states[0].shape))
-
                 # Collect prediction frames
-                target_locations = []
+                target_identities = []
                 for s in range(t_extrap):
-                    to_display, loc = localize(torch.detach(pred[s+nt-t_extrap][0]).cpu())
-                    target_locations.append((s, loc))
-                    pred_msg.value[:,s*img_shp[1]:(s+1)*img_shp[1],:img_shp[2]] = to_display
+                    disp, loc, angle = localize(torch.detach(pred[s+nt-t_extrap][0,:,:,:]).cpu())
+                    target_identities.append((s+1, loc, angle))
+                    pred_msg.value[:,s*img_shp[1]:(s+1)*img_shp[1],:img_shp[2]] = disp
 
                 # Print loss or prediction messages
                 if do_train:
@@ -143,12 +142,12 @@ def img_to_pred(t, camera, plot_topic, pred_msg, model, model_path,
                         (int(run_step.value/epoch_loop), run_step.value%epoch_loop, loss.item(), \
                          scheduler.value.get_lr()[0]))
                 else:
-                    clientLogger.info('Target locations: ' + str(target_locations))
+                    clientLogger.info('Target locations and angles: ' + str(target_identities))
 
             # Collect input frames
             inpt_msg = torch.zeros(img_shp[0], img_shp[1]*t_extrap, img_shp[2])
             for s in range(t_extrap):
-                inpt_msg[:,s*img_shp[1]:(s+1)*img_shp[1],:] = model_inputs.value[0,s+nt-t_extrap]
+                inpt_msg[:,s*img_shp[1]:(s+1)*img_shp[1],:] = model_inputs.value[0,s+nt-t_extrap,:,:,:]
 
             # Build and display the final message
             plot_msg = torch.cat((pred_msg.value, inpt_msg), 2).numpy().transpose(2,1,0)*int(normalizer)
