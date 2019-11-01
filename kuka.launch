@@ -447,11 +447,11 @@ gripper_right_effort_controller:
     &lt;type>transmission_interface/SimpleTransmission&lt;/type>
     &lt;joint name="iiwa_joint_1">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
     &lt;/joint>
     &lt;actuator name="iiwa_motor_1">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
       &lt;mechanicalReduction>1&lt;/mechanicalReduction>
     &lt;/actuator>
   &lt;/transmission>
@@ -460,11 +460,11 @@ gripper_right_effort_controller:
     &lt;type>transmission_interface/SimpleTransmission&lt;/type>
     &lt;joint name="iiwa_joint_2">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
     &lt;/joint>
     &lt;actuator name="iiwa_motor_2">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
       &lt;mechanicalReduction>1&lt;/mechanicalReduction>
     &lt;/actuator>
   &lt;/transmission>
@@ -473,11 +473,11 @@ gripper_right_effort_controller:
     &lt;type>transmission_interface/SimpleTransmission&lt;/type>
     &lt;joint name="iiwa_joint_3">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
     &lt;/joint>
     &lt;actuator name="iiwa_motor_3">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
       &lt;mechanicalReduction>1&lt;/mechanicalReduction>
     &lt;/actuator>
   &lt;/transmission>
@@ -486,11 +486,11 @@ gripper_right_effort_controller:
     &lt;type>transmission_interface/SimpleTransmission&lt;/type>
     &lt;joint name="iiwa_joint_4">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
     &lt;/joint>
     &lt;actuator name="iiwa_motor_4">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
       &lt;mechanicalReduction>1&lt;/mechanicalReduction>
     &lt;/actuator>
   &lt;/transmission>
@@ -499,11 +499,11 @@ gripper_right_effort_controller:
     &lt;type>transmission_interface/SimpleTransmission&lt;/type>
     &lt;joint name="iiwa_joint_5">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
     &lt;/joint>
     &lt;actuator name="iiwa_motor_5">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
       &lt;mechanicalReduction>1&lt;/mechanicalReduction>
     &lt;/actuator>
   &lt;/transmission>
@@ -512,11 +512,11 @@ gripper_right_effort_controller:
     &lt;type>transmission_interface/SimpleTransmission&lt;/type>
     &lt;joint name="iiwa_joint_6">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
     &lt;/joint>
     &lt;actuator name="iiwa_motor_6">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
       &lt;mechanicalReduction>1&lt;/mechanicalReduction>
     &lt;/actuator>
   &lt;/transmission>
@@ -525,11 +525,11 @@ gripper_right_effort_controller:
     &lt;type>transmission_interface/SimpleTransmission&lt;/type>
     &lt;joint name="iiwa_joint_7">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
     &lt;/joint>
     &lt;actuator name="iiwa_motor_7">
       &lt;hardwareInterface>PositionJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
       &lt;mechanicalReduction>1&lt;/mechanicalReduction>
     &lt;/actuator>
   &lt;/transmission>
@@ -623,11 +623,11 @@ gripper_right_effort_controller:
     &lt;type>transmission_interface/SimpleTransmission&lt;/type>
     &lt;joint name="gripper_left_joint">
       &lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
     &lt;/joint>
     &lt;actuator name="gripper_motor_left">
       &lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
       &lt;mechanicalReduction>1&lt;/mechanicalReduction>
     &lt;/actuator>
   &lt;/transmission>
@@ -636,11 +636,11 @@ gripper_right_effort_controller:
     &lt;type>transmission_interface/SimpleTransmission&lt;/type>
     &lt;joint name="gripper_right_joint">
       &lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
     &lt;/joint>
     &lt;actuator name="iiwa_motor_right">
       &lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>
-      &lt;!--&lt;hardwareInterface>hardware_interface/EffortJointInterface&lt;/hardwareInterface>-->
+      &lt;!--&lt;hardwareInterface>EffortJointInterface&lt;/hardwareInterface>-->
       &lt;mechanicalReduction>1&lt;/mechanicalReduction>
     &lt;/actuator>
   &lt;/transmission>

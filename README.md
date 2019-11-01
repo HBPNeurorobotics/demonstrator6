@@ -23,7 +23,7 @@ Dependencies
 
 To run the experiment you will need the following packages:
 ```bash
-sudo apt install ros-kinetic-ros-controllers ros-kinetic-controller-manager
+sudo apt install ros-kinetic-ros-controllers ros-kinetic-controller-manager ros-kinetic-robot-state-publisher
 ```
 
 As well as the following python packages available in the NRP experiment:
