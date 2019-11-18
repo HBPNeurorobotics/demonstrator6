@@ -24,8 +24,8 @@ def img_to_pred(t, camera, plot_topic, pred_msg, model,
 
     # Image and model parameters
     underSmpl      = 5      # Avoiding too sharp time resolution (no change between frames)
-    nt             = 10     # Number of "past" frames given to the network
-    t_extrap       = 5      # After this frame, input is not used for future predictions
+    nt             = 15     # Number of "past" frames given to the network
+    t_extrap       = 10     # After this frame, input is not used for future predictions
     n_feat         = 1      # Factor for number of features used in the network
     max_pix_value  = 1.0
     normalizer     = 255.0/max_pix_value
@@ -36,7 +36,8 @@ def img_to_pred(t, camera, plot_topic, pred_msg, model,
     pad            = 8 if scale == 4 else 0  # For up/downsampling to work
     local_path     = '/resources/model'+str(n_feat)+'.pt'
     new_model_path = os.getcwd()+local_path
-    trained_w_path = os.environ['HBP']+'/Experiments/demonstrator6'+local_path
+    trained_w_path = os.environ['HOME'] + '/.opt/nrpStorage/demonstrator6_0'+local_path
+    # trained_w_path = os.environ['HBP']+'/Experiments/demonstrator6'+local_path
     device         = 'cpu'
     if torch.cuda.is_available():
         device = 'cuda'
@@ -45,7 +46,7 @@ def img_to_pred(t, camera, plot_topic, pred_msg, model,
     use_new_w      = False  # If True, do not use weights that are saved in new_model_path
     use_trained_w  = True   # If above is False, use trained_w_path as model weights
     do_train       = True   # Train with present frames if True, predicts future if False
-    initial_lr     = 0.001  # Then, the learning rate is scheduled with cosine annealing
+    initial_lr     = 0.0003  # Then, the learning rate is scheduled with cosine annealing
     epoch_loop     = 100    # Every epoch_loop, a prediction is made, to monitor progress
     n_batches      = 1      # For now, not usable (could roll images for multiple batches)
     

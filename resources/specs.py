@@ -5,7 +5,8 @@ from scipy import optimize as op
 
 
 # Filter for target detection
-local =  os.environ['HBP']+'/Experiments/demonstrator6/resources/'
+local =  os.environ['HOME']+'/.opt/nrpStorage/demonstrator6_0/resources/'
+# local =  os.environ['HBP']+'/Experiments/demonstrator6/resources/'
 pths  = [local+'fltr_'+c+'.bmp' for c in ['r', 'g', 'b', 'k']]
 flts  = [cv2.imread(pth, cv2.IMREAD_GRAYSCALE) for pth in pths]
 (flt_cols, flt_rows) = flts[0].shape
@@ -40,15 +41,20 @@ def mark_target(img, targ_pos):
 
     # If the target position exists, mark it
     if targ_pos is not None:
-        (cr, cc) = targ_pos
-        (tr, tc) = (cr - flt_rows//2, cc - flt_cols//2)
-        (br, bc) = (cr + flt_rows//2, cc + flt_cols//2)
-        (tr, tc) = (max(tr,  0            ), max(tc, 0             ))
-        (br, bc) = (min(br, img.shape[1]-1), min(bc, img.shape[2]-1))
-        img[:,[tr,br],  tc:bc ] = 0.0
-        img[:, tr:br , [tc,bc]] = 0.0
-        img[0,[tr,br],  tc:bc ] = 1.0
-        img[0, tr:br , [tc,bc]] = 1.0
+
+        # Build the box boundaries
+        (cntr_row, cntr_col) =  targ_pos
+        (frst_row, frst_col) = (cntr_row - flt_rows//2, cntr_col - flt_cols//2)
+        (last_row, last_col) = (cntr_row + flt_rows//2, cntr_col + flt_cols//2)
+        (frst_row, frst_col) = (max(frst_row, 0             ), max(frst_col, 0             ))
+        (last_row, last_col) = (min(last_row, img.shape[1]-1), min(last_col, img.shape[2]-1))
+        
+        # Draw the box
+        if frst_row < last_row and frst_col < last_col:
+            img[:,[frst_row,last_row],  frst_col:last_col ] = 0.0
+            img[:, frst_row:last_row , [frst_col,last_col]] = 0.0
+            img[0,[frst_row,last_row],  frst_col:last_col ] = 1.0
+            img[0, frst_row:last_row , [frst_col,last_col]] = 1.0
     
     # Return the marked images
     return img
