@@ -4,10 +4,15 @@ import os
 from scipy import optimize as op
 
 
-# Filter for target detection
-local =  os.environ['HOME']+'/.opt/nrpStorage/demonstrator6_0/resources/'
-# local =  os.environ['HBP']+'/Experiments/demonstrator6/resources/'
-pths  = [local+'fltr_'+c+'.bmp' for c in ['r', 'g', 'b', 'k']]
+# Find the experiment directory (because names may vary a bit)
+exp_dir = os.environ['HOME']+'/.opt/nrpStorage/'
+for f_name in os.listdir(exp_dir):
+    if f_name.startswith('demonstrator6'):
+        exp_dir += f_name+'/resources/'
+        break  # only take the first matching directory
+
+# Define the filters to find the target
+pths  = [exp_dir+'fltr_'+c+'.bmp' for c in ['r', 'g', 'b', 'k']]
 flts  = [cv2.imread(pth, cv2.IMREAD_GRAYSCALE) for pth in pths]
 (flt_cols, flt_rows) = flts[0].shape
 

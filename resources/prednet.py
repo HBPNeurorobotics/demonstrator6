@@ -58,8 +58,7 @@ class PredNet(nn.Module):
             w = w//self.scale
             h = h//self.scale
 
-        frame_preds   = []
-        latent_states = []
+        frame_preds = []
         for t in range(nt):
 
             # Downward pass
@@ -84,8 +83,8 @@ class PredNet(nn.Module):
                 R_seq[l] = R
                 H_seq[l] = hx
 
-                if l == self.n_layers-1:
-                    latent_states.append(R.detach())
+                if l == self.n_layers-1 and t == self.t_extrap:
+                    latent_state = R.detach()
 
             # Input to the lowest layer
             if t < self.t_extrap:
@@ -110,7 +109,7 @@ class PredNet(nn.Module):
 
             frame_preds.append(frame_pred)
 
-        return frame_preds, latent_states
+        return frame_preds, latent_state
 
 
 class SatLU(nn.Module):
