@@ -163,7 +163,7 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_msg, model,
             # Collect input frames
             inpt_msg = torch.zeros(img_shp[0], img_shp[1]*(nt-t_extrap), img_shp[2])
             for s in range(nt-t_extrap):
-                inpt_msg[:,s*img_shp[1]:(s+1)*img_shp[1],:] = model_inputs.value[0,t_extrap+s+1,:,:,pad:-pad]
+                inpt_msg[:,s*img_shp[1]:(s+1)*img_shp[1],:] = model_inputs.value[0,t_extrap+s,:,:,pad:-pad]
 
             # Build and send the display message
             plot_msg = torch.cat((pred_msg.value, inpt_msg), 2).numpy().transpose(2,1,0)*int(normalizer)
