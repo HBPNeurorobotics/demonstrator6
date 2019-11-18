@@ -6,7 +6,7 @@ from torch.autograd import Variable
 
 class PredNet(nn.Module):
     
-    def __init__(self, R_channels, A_channels, device='cpu', t_extrap=float('inf')):
+    def __init__(self, R_channels, A_channels, device='cpu', t_extrap=float('inf'), scale=4):
         
         super(PredNet, self).__init__()
         self.r_channels = R_channels + (0,)  # for convenience
@@ -17,7 +17,7 @@ class PredNet(nn.Module):
 
         for i in range(self.n_layers):
 
-            cell = ConvLSTMCell(2 * self.a_channels[i] + self.r_channels[i+1], self.r_channels[i], (3, 3))
+            cell = ConvLSTMCell(2*self.a_channels[i] + self.r_channels[i+1], self.r_channels[i], (3, 3))
             setattr(self, 'cell{}'.format(i), cell)
 
         for i in range(self.n_layers):
@@ -27,8 +27,9 @@ class PredNet(nn.Module):
                 conv.add_module('satlu', SatLU())
             setattr(self, 'conv{}'.format(i), conv)
 
-        self.upsample = nn.Upsample(scale_factor=2)
-        self.maxpool  = nn.MaxPool2d(kernel_size=2, stride=2)
+        self.scale    = scale
+        self.upsample = nn.Upsample(scale_factor=scale)
+        self.maxpool  = nn.MaxPool2d(kernel_size=scale, stride=scale)
         for l in range(self.n_layers - 1):
 
             update_A = nn.Sequential(nn.Conv2d(2*self.a_channels[l], self.a_channels[l+1], (3, 3), padding=1), self.maxpool)
@@ -44,9 +45,9 @@ class PredNet(nn.Module):
 
     def forward(self, x, nt):
 
-        R_seq = [None] * self.n_layers
-        H_seq = [None] * self.n_layers
-        E_seq = [None] * self.n_layers
+        R_seq = [None]*self.n_layers
+        H_seq = [None]*self.n_layers
+        E_seq = [None]*self.n_layers
 
         w, h       = x.size(-2), x.size(-1)
         batch_size = x.size(0)
@@ -54,8 +55,8 @@ class PredNet(nn.Module):
 
             E_seq[l] = Variable(torch.zeros(batch_size, 2*self.a_channels[l], w, h, device=self.device))
             R_seq[l] = Variable(torch.zeros(batch_size,   self.r_channels[l], w, h, device=self.device))
-            w = w//2
-            h = h//2
+            w = w//self.scale
+            h = h//self.scale
 
         frame_preds   = []
         latent_states = []
