@@ -1,25 +1,26 @@
 # Imported transfer function that trains a predictive coding network live, and make predictions
 from sensor_msgs.msg import Image
 from std_msgs.msg    import Float32MultiArray
-@nrp.MapRobotSubscriber('camera',       Topic('/camera/image_raw',   Image))
-@nrp.MapRobotPublisher( 'plot_topic',   Topic('/pred_plot',          Image))
-@nrp.MapRobotPublisher( 'latent_topic', Topic('/latent', Float32MultiArray))
-@nrp.MapVariable(       'pred_msg',     initial_value=None)
-@nrp.MapVariable(       'model',        initial_value=None)
-@nrp.MapVariable(       'model_path',   initial_value=None)
-@nrp.MapVariable(       'model_inputs', initial_value=None)
-@nrp.MapVariable(       'optimizer',    initial_value=None)
-@nrp.MapVariable(       'scheduler',    initial_value=None)
-@nrp.MapVariable(       'run_step',     initial_value=0   )
+@nrp.MapRobotSubscriber('camera',         Topic('/camera/image_raw',     Image))
+@nrp.MapRobotPublisher( 'plot_topic',     Topic('/pred_plot',            Image))
+@nrp.MapRobotPublisher( 'latent_topic',   Topic('/latent',   Float32MultiArray))
+@nrp.MapRobotPublisher( 'pred_pos_topic', Topic('/pred_pos', Float32MultiArray))
+@nrp.MapVariable(       'pred_msg',       initial_value=None)
+@nrp.MapVariable(       'model',          initial_value=None)
+@nrp.MapVariable(       'model_path',     initial_value=None)
+@nrp.MapVariable(       'model_inputs',   initial_value=None)
+@nrp.MapVariable(       'optimizer',      initial_value=None)
+@nrp.MapVariable(       'scheduler',      initial_value=None)
+@nrp.MapVariable(       'run_step',       initial_value=0   )
 @nrp.Robot2Neuron()
-def img_to_pred(t, camera, plot_topic, latent_topic, pred_msg, model,
-    model_path, model_inputs, optimizer, scheduler, run_step):
+def img_to_pred(t, camera, plot_topic, latent_topic, pred_pos_topic, pred_msg,
+    model, model_path, model_inputs, optimizer, scheduler, run_step):
 
     # Imports
     import os
     import torch
     import torch.nn.functional as F
-    import numpy
+    import numpy as np
     from prednet      import PredNet
     from cv_bridge    import CvBridge
     from std_msgs.msg import Float32MultiArray, MultiArrayLayout, MultiArrayDimension
@@ -48,7 +49,7 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_msg, model,
     use_new_w      = False  # If True, do not use weights that are saved in new_model_path
     use_trained_w  = True   # If above is False, use trained_w_path as model weights
     do_train       = False  # Train with present frames if True, predicts future if False
-    initial_lr     = 0.0003 # Then, the learning rate is scheduled with cosine annealing
+    initial_lr     = 1e-4   # Then, the learning rate is scheduled with cosine annealing
     epoch_loop     = 100    # Every epoch_loop, a prediction is made, to monitor progress
     n_batches      = 1      # For now, not usable (could roll images for multiple batches)
     
@@ -57,7 +58,7 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_msg, model,
 
         # Collect input image and initialize the network input
         cam_img = CvBridge().imgmsg_to_cv2(camera.value, 'rgb8')/normalizer
-        if C_channels == 3:
+        if C_channels == 3:  # Below I messed up, it should be (2,0,1) but the model is already trained.
             cam_img = torch.tensor(cam_img, device=device).permute(2,1,0)  # --> channels last
         if C_channels == 1:
             cam_img = cam_img[:,:,1]  # .mean(axis=2)
@@ -138,11 +139,12 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_msg, model,
                 targ_pos = []
                 for s in range(nt-t_extrap):
                     disp = torch.detach(pred[t_extrap+s].clamp(0.0, 1.0)[0,:,:,pad:-pad]).cpu()
+                    # disp = model_inputs.value[0,-(s+1),:,:,pad:-pad].cpu()  # for tests
                     targ_pos.append(localize_target(disp))
                     displays.append(disp)
 
                 # Complete for missing target positions, highlight target and set the display message
-                if 0 < numpy.sum([p is None for p in targ_pos]) < len(targ_pos)-2:
+                if 0 < np.sum([any([np.isnan(p) for p in pos]) for pos in targ_pos]) < len(targ_pos)-2:
                     targ_pos = complete_target_positions(targ_pos)
                 for s, (disp, pos) in enumerate(zip(displays, targ_pos)):
                     pred_msg.value[:,s*img_shp[1]:(s+1)*img_shp[1],:img_shp[2]] = mark_target(disp, pos)
@@ -156,9 +158,15 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_msg, model,
                     clientLogger.info('Prediction for future target locations: ' + str(targ_pos))
 
                 # Send latent state message (latent[0] to remove batch dimension)
-                layout_msg = MultiArrayLayout(dim=[MultiArrayDimension(size=d) for d in latent[0].shape])
                 latent_msg = list(latent[0].cpu().numpy().flatten())
+                layout_msg = MultiArrayLayout(dim=[MultiArrayDimension(size=d) for d in latent[0].shape])
                 latent_topic.send_message(Float32MultiArray(layout=layout_msg, data=latent_msg))
+
+                # Send predicted position according to the index of the frame that has to be reported
+                pos_3d_msg = [[1.562-p[0]/156.274, -0.14-p[1]/152.691, 0.964+p[0]-p[0]] for p in targ_pos]
+                pos_3d_msg = [p for pos in pos_3d_msg for p in pos]  # flatten the list
+                layout_msg = MultiArrayLayout(dim=[MultiArrayDimension(size=d) for d in [len(targ_pos),3]])
+                pred_pos_topic.send_message(Float32MultiArray(layout=layout_msg, data=pos_3d_msg))
 
             # Collect input frames
             inpt_msg = torch.zeros(img_shp[0], img_shp[1]*(nt-t_extrap), img_shp[2])
@@ -168,6 +176,6 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_msg, model,
             # Build and send the display message
             plot_msg = torch.cat((pred_msg.value, inpt_msg), 2).numpy().transpose(2,1,0)*int(normalizer)
             if C_channels == 1:
-                plot_msg = numpy.dstack((plot_msg, plot_msg, plot_msg))
+                plot_msg = np.dstack((plot_msg, plot_msg, plot_msg))
             plot_topic  .send_message(CvBridge().cv2_to_imgmsg(plot_msg.astype(np.uint8),'rgb8'))
             
