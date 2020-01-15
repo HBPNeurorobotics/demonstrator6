@@ -4,6 +4,7 @@ from smach.state import State
 
 from gazebo_msgs.srv import ApplyBodyWrench, GetModelState, DeleteModel, SpawnEntity, SpawnEntityRequest
 from geometry_msgs.msg import Wrench, Vector3, Point
+from gazebo_msgs.msg import ModelState
 import numpy as np
 import rospy
 from rospy import ServiceProxy, wait_for_service
@@ -52,49 +53,49 @@ ball_sdf_xml = """
 </sdf>
 """
 
+ball_name = "ball"
+ball_colors = ['Green']  #, 'Red', 'Blue', 'Orange', 'Yellow', 'Purple', 'Turquoise']
+ball_start_pos = Point(0, -1.3, 1.5)
+
+ball_msg = SpawnEntityRequest()
+ball_msg.entity_name = ball_name
+ball_msg.entity_xml = ball_sdf_xml.format(ball_name=ball_name, color=np.random.choice(ball_colors, size=1)[0])
+ball_msg.initial_pose.position = ball_start_pos
+ball_msg.reference_frame = "world"
+
+spawn_proxy = rospy.ServiceProxy('/gazebo/spawn_sdf_entity', SpawnEntity, persistent=True)
+spawn_proxy(ball_msg)
+
+move_msg_pub = rospy.Publisher("/gazebo/set_model_state", ModelState, queue_size=1)
+
+move_msg = ModelState()
+move_msg.model_name = ball_name
+move_msg.pose.position = ball_start_pos
+move_msg.scale.x = 1
+move_msg.scale.y = 1
+move_msg.scale.z = 1
+move_msg.reference_frame = "world"
+
 class ThrowBallState(State):
     def __init__(self, ball_name, sdf_xml, outcomes=['success', 'aborted']):
         super(ThrowBallState, self).__init__(outcomes=outcomes)
-        self._ball_name = ball_name
-        self._spawn_proxy = rospy.ServiceProxy('/gazebo/spawn_sdf_entity',
-                                               SpawnEntity, persistent=True)
-        # self._wrench_proxy = ServiceProxy('/gazebo/apply_body_wrench',
-        #                                   ApplyBodyWrench, persistent=True)
-        self._ball_msg = SpawnEntityRequest()
-        self._ball_msg.entity_name = self._ball_name
-        self._sdf_xml = sdf_xml
-        self._ball_colors = ['Green']  #, 'Red', 'Blue', 'Orange', 'Yellow', 'Purple', 'Turquoise']
-        self._ball_msg.entity_xml = sdf_xml.format(ball_name=ball_name, color=np.random.choice(self._ball_colors, size=1)[0])
-        self._ball_msg.initial_pose.position.x = 0.
-        self._ball_msg.initial_pose.position.y = -1.3
-        self._ball_msg.initial_pose.position.z = 1.5
-        self._ball_msg.reference_frame = "world"
 
     def execute(self, userdata):
-        self._ball_msg.entity_xml = self._sdf_xml.format(ball_name=ball_name, color=np.random.choice(self._ball_colors, size=1)[0])
-        # self._ball_msg.initial_pose.position.y = -1.3 + 0.4*(np.random.random()-0.5)
-        self._spawn_proxy(self._ball_msg)
-        #force = Vector3(-5., 0., 1.5)
-        #wrench =  Wrench(force, Vector3(0.0, 0.0, 0.0))
-        #self._wrench_proxy(self._ball_name+"::ball", "world", Point(),
-        #                   wrench, rospy.Time(0.), rospy.Duration(0.1))
+        #rospy.loginfo(move_msg)
+        move_msg_pub.publish(move_msg)
         return 'success'
 
 class FlyingBallState(State):
     def __init__(self, ball_name, rate=1., outcomes=['success', 'aborted'], ):
         super(FlyingBallState, self).__init__(outcomes=outcomes)
         self._rate = rospy.Rate(rate)
-        self._ball_name = ball_name
         self._state_proxy = ServiceProxy('/gazebo/get_model_state',
                                          GetModelState, persistent=True)
-        self._delete_proxy = ServiceProxy('/gazebo/delete_model',
-                                         DeleteModel, persistent=True)
 
     def execute(self, userdata):
-        start_time = rospy.Time.now()
+        #start_time = rospy.Time.now()
         while not self.ball_lower_than(0.1):
             self._rate.sleep()
-        self._delete_proxy(self._ball_name)
         return 'success'
 
     def ball_lower_than(self, z_threshold):
@@ -112,11 +113,11 @@ with sm:
       "throw_ball",
       ThrowBallState(ball_name, ball_sdf_xml),
       transitions = {"success": "flying_ball",
-                     "aborted": ERROR}
+                     "aborted": "ERROR"}
     )
     StateMachine.add(
      "flying_ball",
      FlyingBallState(ball_name),
      transitions = {"success": "throw_ball",
-                    "aborted": ERROR}
+                    "aborted": "ERROR"}
     )
