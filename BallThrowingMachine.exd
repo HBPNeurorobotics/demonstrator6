@@ -26,7 +26,15 @@ ball_sdf_xml = """
     <pose>0 0 0 0 0 0</pose>
     <link name='{ball_name}'>
       <inertial>
-        <mass>0.057</mass>
+        <mass>0.257</mass>
+        <inertia>
+            <ixx>0.000428333</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.000428333</iyy>
+            <iyz>0</iyz>
+            <izz>0.000428333</izz>
+        </inertia>
       </inertial>
       <collision name='collision'>
         <geometry>
