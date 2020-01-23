@@ -628,4 +628,7 @@ gripper_right_effort_controller:
       <!--<remap from="/iiwa/robot_description" to="/robot_description"/>-->
     </node>
   </group>
+  <node name="manager_module" pkg="iba_multimodule_experiment" type="manager_module.py" respawn="false" output="screen"/>
+  <node name="cerebellum" pkg="demonstrator6" type="iba_cerebellum.py" respawn="false" output="screen"/>
+  <node name="reactive_component" pkg="demonstrator6" type="iba_reactive_component.py" respawn="false" output="screen"/>
 </launch>
