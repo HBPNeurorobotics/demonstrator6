@@ -1,5 +1,18 @@
 <?xml version="1.0"?>
 <launch>
+
+  <arg name="subject_path" default="$(find target_reaching_experiments)/gazebo_models/target_reaching_subject.sdf" />
+  <arg name="subject_name" default="target_reaching_subject" />
+  <arg name="subject_x" default="0.5" />
+  <arg name="subject_y" default="0.4" />
+  <arg name="subject_z" default="1.3" />
+  <arg name="spawn_sphere" default="true" />
+  <group if="$(arg spawn_sphere)">
+    <node name="spawn_subject" pkg="gazebo_ros" type="spawn_model"
+        args="-file $(arg subject_path) -sdf -model $(arg subject_name) -x $(arg subject_x) -y $(arg subject_y) -z $(arg subject_z)"
+        respawn="false" output="screen"/>
+  </group>
+
   <group ns="/iiwa">
     <!-- Load joint controller configurations from YAML file to parameter server -->
     <!--<rosparam file="$(find kuka_iiwa_14_prismatic_gripper)/config/ros_controllers.yaml" command="load"/>-->
