@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <sdf version="1.6">
   <world name="default">
     <light name="sun" type="directional">
@@ -376,10 +377,10 @@
     <!-- ########### camera end ########### -->
 
     <!--Kuka Arm-->
-    <include>
+    <!--<include>
         <uri>model://kuka_iiwa_14_prismatic_gripper</uri>
         <pose>0 0 0.5 0 -0 0</pose>
-    </include>
+    </include>-->
 
     <state world_name="default">
       <sim_time>215 662000000</sim_time>
