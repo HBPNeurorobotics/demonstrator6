@@ -54,7 +54,7 @@ gripper_right_effort_controller:
 
     <!--<param name="robot_description" textfile="$(find kuka_iiwa_14_prismatic_gripper)/config/total_iiwa_14.xacro"/>-->
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find iiwa_description)/urdf/iiwa14.urdf.xacro'" />
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x 0.0 -y 0.0 -z 0.1 -model iiwa14" respawn="false" output="screen"/>
+<!--     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -x 0.0 -y 0.0 -z 0.1 -model iiwa14" respawn="false" output="screen"/> -->
 
     <!-- load the controllers -->
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"

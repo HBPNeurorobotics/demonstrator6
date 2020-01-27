@@ -377,10 +377,10 @@
     <!-- ########### camera end ########### -->
 
     <!--Kuka Arm-->
-    <!--<include>
-        <uri>model://kuka_iiwa_14_prismatic_gripper</uri>
+    <include>
+        <uri>package://iiwa_description/sdf/iiwa14.sdf</uri>
         <pose>0 0 0.5 0 -0 0</pose>
-    </include>-->
+    </include>
 
     <state world_name="default">
       <sim_time>215 662000000</sim_time>
