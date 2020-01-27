@@ -378,7 +378,7 @@
 
     <!--Kuka Arm-->
     <include>
-        <uri>package://iiwa_description/sdf/iiwa14.sdf</uri>
+        <uri>model://iiwa_description/sdf/iiwa14.sdf</uri>
         <pose>0 0 0.5 0 -0 0</pose>
     </include>
 
