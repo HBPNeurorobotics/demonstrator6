@@ -744,7 +744,7 @@
       <arm>
         <arm_name>iiwa</arm_name>
         <palm_link>iiwa_link_7</palm_link>
-	<gripper_link>gripper_right_link</gripper_link>
+        <gripper_link>gripper_right_link</gripper_link>
         <gripper_link>gripper_left_link</gripper_link>
       </arm>
       <forces_angle_tolerance>100</forces_angle_tolerance>

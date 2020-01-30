@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import hbp_nrp_excontrol.nrp_states as states
 from smach import StateMachine
 from smach.state import State
@@ -9,6 +11,7 @@ import numpy as np
 import rospy
 from rospy import ServiceProxy, wait_for_service
 
+import random
 
 FINISHED = 'FINISHED'
 ERROR = 'ERROR'
@@ -122,6 +125,16 @@ class FlyingBallState(State):
             return False
         return current_ball_state.pose.position.z < z_threshold
 
+class WaitBallState(State):
+    def __init__(self, ball_name, outcomes=['success', 'aborted']):
+        super(WaitBallState, self).__init__(outcomes=outcomes)
+
+    def execute(self, userdata):
+        duration_min = 0
+        duration_max = 1
+        duration = random.uniform(duration_min, duration_max)
+        rospy.sleep(duration)
+        return 'success'
 
 with sm:
     # Waits until a simulation time of 20s is reached
@@ -134,6 +147,12 @@ with sm:
     StateMachine.add(
      "flying_ball",
      FlyingBallState(ball_name),
+     transitions = {"success": "wait",
+                    "aborted": "ERROR"}
+    )
+    StateMachine.add(
+     "wait",
+     WaitBallState(ball_name),
      transitions = {"success": "throw_ball",
                     "aborted": "ERROR"}
     )
