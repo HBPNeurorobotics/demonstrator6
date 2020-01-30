@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-<!--  <include file="$(find kuka_iiwa_14_prismatic_gripper_config)/launch/gazebo_controllers.launch" /> -->
-
-<!--  <node name="manager_module" pkg="iba_multimodule_experiment" type="manager_module.py" respawn="false" output="screen"/>
-  <node name="module1" pkg="iba_multimodule_experiment" type="module1.py" respawn="false" output="screen"/>
-  <node name="module2" pkg="iba_multimodule_experiment" type="module2.py" respawn="false" output="screen"/>
-  <node name="module3" pkg="iba_multimodule_experiment" type="module3.py" respawn="false" output="screen"/>-->
+  <include file="$(find kuka_iiwa_14_prismatic_gripper_config)/launch/gazebo_controllers.launch" />
 
   <node name="manager_module" pkg="iba_multimodule_experiment" type="manager_module.py" respawn="false" output="screen"/>
   <node name="cerebellum" pkg="demonstrator6" type="iba_cerebellum.py" respawn="false" output="screen"/>
