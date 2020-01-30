@@ -2,7 +2,7 @@
   <ns1:brainModel>
     <ns1:file>tutorial_baseball.py</ns1:file>
   </ns1:brainModel>
-  <ns1:transferFunction src="img_to_pred.py" xsi:type="ns1:PythonTransferFunction"/>
+  <ns1:transferFunction src="img_to_pred.py" xsi:type="ns1:PythonTransferFunction" priority=50/>
 <!--<ns1:bodyModel robotId="arm">kuka_lbr_iiwa_generic_d6/model.sdf</ns1:bodyModel>-->
 </ns1:bibi>
 
