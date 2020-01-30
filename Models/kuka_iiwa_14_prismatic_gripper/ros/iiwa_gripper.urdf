@@ -107,8 +107,8 @@
   <link name="iiwa_link_2">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0003 0.059 0.042"/>
-      <mass value="4"/>
-      <inertia ixx="0.05" ixy="0" ixz="0" iyy="0.018" iyz="0" izz="0.044"/>
+      <mass value="0.4"/>
+      <inertia ixx="0.005" ixy="0" ixz="0" iyy="0.0018" iyz="0" izz="0.0044"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -138,8 +138,8 @@
   <link name="iiwa_link_3">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0.03 0.13"/>
-      <mass value="3"/>
-      <inertia ixx="0.08" ixy="0" ixz="0" iyy="0.075" iyz="0" izz="0.01"/>
+      <mass value="0.3"/>
+      <inertia ixx="0.008" ixy="0" ixz="0" iyy="0.0075" iyz="0" izz="0.001"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -169,8 +169,8 @@
   <link name="iiwa_link_4">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0.067 0.034"/>
-      <mass value="2.7"/>
-      <inertia ixx="0.03" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.029"/>
+      <mass value="0.27"/>
+      <inertia ixx="0.003" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.0029"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -200,8 +200,8 @@
   <link name="iiwa_link_5">
     <inertial>
       <origin rpy="0 0 0" xyz="0.0001 0.021 0.076"/>
-      <mass value="1.7"/>
-      <inertia ixx="0.02" ixy="0" ixz="0" iyy="0.018" iyz="0" izz="0.005"/>
+      <mass value="0.17"/>
+      <inertia ixx="0.002" ixy="0" ixz="0" iyy="0.0018" iyz="0" izz="0.0005"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -231,8 +231,8 @@
   <link name="iiwa_link_6">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0.0006 0.0004"/>
-      <mass value="1.8"/>
-      <inertia ixx="0.005" ixy="0" ixz="0" iyy="0.0036" iyz="0" izz="0.0047"/>
+      <mass value="0.18"/>
+      <inertia ixx="0.0005" ixy="0" ixz="0" iyy="0.00036" iyz="0" izz="0.00047"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -262,8 +262,8 @@
   <link name="iiwa_link_7">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0.02"/>
-      <mass value="0.3"/>
-      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      <mass value="0.03"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -296,6 +296,21 @@
       <updateRate>50.0</updateRate>
       <topicName>/iiwa/state/CartesianWrench</topicName>
       <jointName>iiwa_joint_7</jointName>
+    </plugin>
+    <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+      <arm>
+        <arm_name>iiwa</arm_name>
+        <palm_link>iiwa_link_7</palm_link>
+	<gripper_link>gripper_right_link</gripper_link>
+        <gripper_link>gripper_left_link</gripper_link>
+      </arm>
+      <forces_angle_tolerance>100</forces_angle_tolerance>
+      <update_rate>4</update_rate>
+      <grip_count_threshold>4</grip_count_threshold>
+      <max_grip_count>8</max_grip_count>
+      <release_tolerance>0.005</release_tolerance>
+      <disable_collisions_on_attach>false</disable_collisions_on_attach>
+      <contact_topic>__default_topic__</contact_topic>
     </plugin>
   </gazebo>
   <!-- Load Gazebo lib and set the robot namespace -->
@@ -357,11 +372,11 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="iiwa_joint_1">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>PositionJointInterface</hardwareInterface>-->
     </joint>
     <actuator name="iiwa_motor_1">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -370,11 +385,11 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="iiwa_joint_2">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
     </joint>
     <actuator name="iiwa_motor_2">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -383,11 +398,11 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="iiwa_joint_3">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
     </joint>
     <actuator name="iiwa_motor_3">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -396,11 +411,11 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="iiwa_joint_4">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
     </joint>
     <actuator name="iiwa_motor_4">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -409,11 +424,11 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="iiwa_joint_5">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
     </joint>
     <actuator name="iiwa_motor_5">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -422,11 +437,11 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="iiwa_joint_6">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
     </joint>
     <actuator name="iiwa_motor_6">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -435,11 +450,11 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="iiwa_joint_7">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
     </joint>
     <actuator name="iiwa_motor_7">
       <hardwareInterface>PositionJointInterface</hardwareInterface>
-      <!--<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>-->
+      <!--<hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>-->
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -473,8 +488,8 @@
   <link name="base_link_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="1.0"/>
-      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.00017" ixy="0.0" ixz="0.0" iyy="0.0018" iyz="0.0" izz="0.0017"/>
     </inertial>
     <visual>
       <origin rpy="-1.5707963705062866 -0 0" xyz="0 0.02500000037252903 -1.0927847515773692e-09"/>
@@ -492,8 +507,8 @@
   <link name="gripper_left_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="1.0"/>
-      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.0002" ixy="0.0" ixz="0.0" iyy="0.000195" iyz="0.0" izz="0.000021"/>
     </inertial>
     <visual>
       <origin rpy="3.141592502593994 5.960465188081798e-08 1.5707963705062866" xyz="9.529081523851346e-09 -1.4710425944031158e-07 -0.0719999828338623"/>
@@ -511,8 +526,8 @@
   <link name="gripper_right_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="1.0"/>
-      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      <mass value="0.1"/>
+      <inertia ixx="0.0002" ixy="0.0" ixz="0.0" iyy="0.000195" iyz="0.0" izz="0.000021"/>
     </inertial>
     <visual>
       <origin rpy="3.141592502593994 -5.960465188081798e-08 -1.5707963705062866" xyz="-9.529081523851346e-09 -1.4710425944031158e-07 -0.0719999828338623"/>
