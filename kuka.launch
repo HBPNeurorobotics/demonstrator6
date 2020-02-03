@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find demonstrator6_description)/urdf/iiwa_gripper.urdf.xacro'" />
   <group ns="/iiwa">
     <!-- Load joint controller configurations from YAML file to parameter server -->
     <rosparam file="$(find demonstrator6_description)/config/ros_controllers_eff_traj.yaml" command="load"/>
@@ -15,7 +16,7 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
       respawn="false" output="screen">
     </node>
-    <node name="joint_state_relay" pkg="topic_tools" type="relay" args="/joint_states /iiwa/joint_states"/>
+    <node name="joint_state_relay" pkg="topic_tools" type="relay" args="/iiwa/joint_states /joint_states"/>
   </group>
   <node name="manager_module" pkg="iba_multimodule_experiment" type="manager_module.py" respawn="false" output="screen"/>
   <node name="cerebellum" pkg="demonstrator6" type="iba_cerebellum.py" respawn="false" output="screen"/>
