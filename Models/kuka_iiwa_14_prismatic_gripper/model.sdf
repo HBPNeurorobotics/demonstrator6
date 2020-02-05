@@ -19,7 +19,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/link_0.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/link_0.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -39,7 +39,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/link_0.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/link_0.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -75,7 +75,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/link_1.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/link_1.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -95,7 +95,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/link_1.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/link_1.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -147,7 +147,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/link_2.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/link_2.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -167,7 +167,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/link_2.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/link_2.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -219,7 +219,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/link_3.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/link_3.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -239,7 +239,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/link_3.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/link_3.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -291,7 +291,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/link_4.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/link_4.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -311,7 +311,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/link_4.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/link_4.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -363,7 +363,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/link_5.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/link_5.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -383,7 +383,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/link_5.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/link_5.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -435,7 +435,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/link_6.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/link_6.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -455,7 +455,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/link_6.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/link_6.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -507,7 +507,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/link_7.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/link_7.dae</uri>
           </mesh>
         </geometry>
         <surface>
@@ -527,7 +527,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/COL_base.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/COL_base.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -536,7 +536,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/link_7.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/link_7.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -551,7 +551,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/VIS_base.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/VIS_base.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -607,7 +607,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/COL_gripper_left.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/COL_gripper_left.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -616,7 +616,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/VIS_gripper_left.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/VIS_gripper_left.dae</uri>
           </mesh>
         </geometry>
       </visual>
@@ -660,7 +660,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/collision/COL_gripper_right.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/COL_gripper_right.dae</uri>
           </mesh>
         </geometry>
       </collision>
@@ -669,7 +669,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://demonstrator6_description/meshes/visual/VIS_gripper_right.dae</uri>
+            <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/visual/VIS_gripper_right.dae</uri>
           </mesh>
         </geometry>
       </visual>
