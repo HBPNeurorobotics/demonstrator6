@@ -130,8 +130,8 @@ class WaitBallState(State):
         super(WaitBallState, self).__init__(outcomes=outcomes)
 
     def execute(self, userdata):
-        duration_min = 0
-        duration_max = 1
+        duration_min = 4
+        duration_max = 5
         duration = random.uniform(duration_min, duration_max)
         rospy.sleep(duration)
         return 'success'
