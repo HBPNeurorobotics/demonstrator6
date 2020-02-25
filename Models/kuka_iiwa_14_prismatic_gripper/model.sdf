@@ -24,6 +24,7 @@
         </geometry>
         <surface>
           <contact>
+            <collide_bitmask>0x10</collide_bitmask>
             <ode/>
           </contact>
           <friction>
@@ -95,6 +96,7 @@
         </geometry>
         <surface>
           <contact>
+            <collide_bitmask>0x10</collide_bitmask>
             <ode/>
           </contact>
           <friction>
@@ -168,6 +170,7 @@
         </geometry>
         <surface>
           <contact>
+            <collide_bitmask>0x10</collide_bitmask>
             <ode/>
           </contact>
           <friction>
@@ -241,6 +244,7 @@
         </geometry>
         <surface>
           <contact>
+            <collide_bitmask>0x10</collide_bitmask>
             <ode/>
           </contact>
           <friction>
@@ -314,6 +318,7 @@
         </geometry>
         <surface>
           <contact>
+            <collide_bitmask>0x10</collide_bitmask>
             <ode/>
           </contact>
           <friction>
@@ -387,6 +392,7 @@
         </geometry>
         <surface>
           <contact>
+            <collide_bitmask>0x10</collide_bitmask>
             <ode/>
           </contact>
           <friction>
@@ -460,6 +466,7 @@
         </geometry>
         <surface>
           <contact>
+            <collide_bitmask>0x10</collide_bitmask>
             <ode/>
           </contact>
           <friction>
@@ -533,6 +540,7 @@
         </geometry>
         <surface>
           <contact>
+            <collide_bitmask>0x10</collide_bitmask>
             <ode/>
           </contact>
           <friction>
@@ -551,6 +559,12 @@
             <uri>model://kuka_iiwa_14_prismatic_gripper/meshes/collision/COL_base.dae</uri>
           </mesh>
         </geometry>
+        <surface>
+          <contact>
+            <collide_bitmask>0x10</collide_bitmask>
+            <ode/>
+          </contact>
+        </surface>
       </collision>
       <visual name='iiwa_link_7_visual'>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -639,6 +653,10 @@
               <mu2>1.0</mu2>
             </ode>
           </friction>
+          <contact>
+            <collide_bitmask>0x10</collide_bitmask>
+            <ode/>
+          </contact>
         </surface>
       </collision>
       <visual name='gripper_left_link_visual'>
@@ -701,6 +719,10 @@
               <mu2>1.0</mu2>
             </ode>
           </friction>
+          <contact>
+            <collide_bitmask>0x10</collide_bitmask>
+            <ode/>
+          </contact>
         </surface>
       </collision>
       <visual name='gripper_right_link_visual'>
