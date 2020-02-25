@@ -20,6 +20,8 @@ flts  = [cv2.imread(pth, cv2.IMREAD_GRAYSCALE) for pth in pths]
 
 # Identify target location and orientation
 def localize_target(img):
+    if img is None:
+        return
 
     # Prepare the probe
     probe = 255*img.numpy().transpose(1,2,0)
@@ -41,6 +43,8 @@ def localize_target(img):
 
 # Highlight the target with a red box
 def mark_target(img, targ_pos):
+    if img is None:
+        return
 
     # If the target position exists, mark it
     if not any([np.isnan(t) for t in targ_pos]):
