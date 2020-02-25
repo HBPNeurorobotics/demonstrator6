@@ -58,6 +58,8 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_pos_topic, pred_msg,
 
         # Collect input image and initialize the network input
         cam_img = CvBridge().imgmsg_to_cv2(camera.value, 'rgb8')/normalizer
+        if cam_img is None:
+            return
         if C_channels == 3:  # Below I messed up, it should be (2,0,1) but the model is already trained.
             cam_img = torch.tensor(cam_img, device=device).permute(2,1,0)  # --> channels last
         if C_channels == 1:
