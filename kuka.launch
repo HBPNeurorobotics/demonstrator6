@@ -9,9 +9,9 @@
 
     <!-- load the controllers -->
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-      output="screen" args="arm_j1_position_controller arm_j2_position_controller arm_j3_position_controller
-                            arm_j4_position_controller arm_j5_position_controller arm_j6_position_controller
-                            arm_j7_position_controller gripper_left_effort_controller gripper_right_effort_controller
+      output="screen" args="effort_j1_position_controller effort_j2_position_controller effort_j3_position_controller
+                            effort_j4_position_controller effort_j5_position_controller effort_j6_position_controller
+                            effort_j7_position_controller gripper_left_effort_controller gripper_right_effort_controller
                             joint_state_controller">
     </node>
 
