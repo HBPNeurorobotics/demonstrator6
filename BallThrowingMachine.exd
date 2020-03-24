@@ -4,6 +4,9 @@ import hbp_nrp_excontrol.nrp_states as states
 from smach import StateMachine
 from smach.state import State
 
+from osrf_gear.srv import ConveyorBeltControl
+from osrf_gear.msg import ConveyorBeltState
+
 from gazebo_msgs.srv import ApplyBodyWrench, GetModelState, DeleteModel, SpawnEntity, SpawnEntityRequest
 from geometry_msgs.msg import Wrench, Vector3, Point
 from gazebo_msgs.msg import ModelState
@@ -18,8 +21,6 @@ ERROR = 'ERROR'
 PREEMPTED = 'PREEMPTED'
 
 sm = StateMachine(outcomes=[FINISHED, ERROR, PREEMPTED])
-
-import hbp_nrp_excontrol.nrp_states as states
 
 ball_name = "ball"
 ball_sdf_xml = """
@@ -95,13 +96,37 @@ move_msg.scale.y = 1
 move_msg.scale.z = 1
 move_msg.reference_frame = "world"
 
+
+belt_control_proxy = rospy.ServiceProxy('/hbp/conveyor_0/control', ConveyorBeltControl, persistent=True)
+
+
 class ThrowBallState(State):
-    def __init__(self, ball_name, sdf_xml, outcomes=['success', 'aborted']):
+    def __init__(self, ball_name, sdf_xml, outcomes=['success', 'aborted', 'end_simulation']):
         super(ThrowBallState, self).__init__(outcomes=outcomes)
+        self.trial_num = 0
+        self.belt_power_schedule = [500, 1000, 1500, 2000, 2500] # when that part ends
+        self.belt_power_values = [50, 75, 100, 50, 75]
+        self.trial_part = 0
+        belt_state = ConveyorBeltState()
+        belt_state.power = self.belt_power_values[self.trial_part]
+        belt_control_proxy(belt_state)
 
     def execute(self, userdata):
-        #rospy.loginfo(move_msg)
         move_msg_pub.publish(move_msg)
+
+        self.trial_num += 1
+        print("Starting trial " + str(self.trial_num))
+
+        if self.trial_num >= self.belt_power_schedule[self.trial_part]:
+          if self.trial_part == len(self.belt_power_schedule)-1:
+            return 'end_simulation'
+          else:
+            self.trial_part += 1
+            belt_state = ConveyorBeltState()
+            belt_state.power = self.belt_power_values[self.trial_part]
+            belt_control_proxy(belt_state)
+            print("Trial scheduler: Set the belt velocity to " + str(self.belt_power_values[self.trial_part]))
+
         return 'success'
 
 class FlyingBallState(State):
@@ -142,7 +167,8 @@ with sm:
       "throw_ball",
       ThrowBallState(ball_name, ball_sdf_xml),
       transitions = {"success": "flying_ball",
-                     "aborted": "ERROR"}
+                     "aborted": "ERROR",
+                     "end_simulation": "stop_simulation"}
     )
     StateMachine.add(
      "flying_ball",
@@ -155,4 +181,10 @@ with sm:
      WaitBallState(ball_name),
      transitions = {"success": "throw_ball",
                     "aborted": "ERROR"}
+    )
+    StateMachine.add(
+      "stop_simulation",
+      states.StopSimulation(),
+      transitions={"succeeded": "FINISHED",
+                    "failed": "ERROR"}
     )
