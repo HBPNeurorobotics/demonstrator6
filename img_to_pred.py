@@ -84,7 +84,7 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_pos_topic, pred_msg,
                     if use_new_w:
                         a = 1./0.
                     if use_trained_w:
-                        model.value.load_state_dict(torch.load(trained_w_path))
+                        model.value.load_state_dict(torch.load(trained_w_path, map_location=torch.device(device)))
                         clientLogger.info('Model initialized with pre-trained weights.')
                     else:
                         model.value.load_state_dict(torch.load(model_path.value))
