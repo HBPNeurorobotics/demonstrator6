@@ -12,7 +12,7 @@ for f_name in os.listdir(exp_dir):
         break  # only take the first matching directory
 
 # Define the filters to find the target
-pths  = [exp_dir+'fltr_'+c+'.bmp' for c in ['r', 'g', 'b', 'k']]
+pths  = [exp_dir+'fltr_'+c+'.bmp' for c in ['g']]#['r', 'g', 'b', 'k']]
 flts  = [cv2.imread(pth, cv2.IMREAD_GRAYSCALE) for pth in pths]
 (flt_cols, flt_rows) = flts[0].shape
 # colors = ['r', 'g', 'b', 'r+b=purple', 'r+g=yellow', 'g+b=turquoise', 'r+g*0.6=orange']
