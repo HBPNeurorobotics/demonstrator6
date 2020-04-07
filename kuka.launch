@@ -9,18 +9,16 @@
 
     <!-- load the controllers -->
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-      output="screen" args="effort_j1_position_controller effort_j2_position_controller effort_j3_position_controller
-                            effort_j4_position_controller effort_j5_position_controller effort_j6_position_controller
-                            effort_j7_position_controller gripper_left_effort_controller gripper_right_effort_controller
-                            joint_state_controller">
+      output="screen" args="joint_state_controller effort_trajectory_controller gripper_left_effort_controller gripper_right_effort_controller">
     </node>
 
-    <!-- convert joint states to TF transforms for rviz, etc -->
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
-      respawn="false" output="screen">
-    </node>
     <node name="joint_state_relay" pkg="topic_tools" type="relay" args="/iiwa/joint_states /joint_states"/>
   </group>
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+  </node>
+
   <node name="manager_module" pkg="iba_multimodule_experiment" type="manager_module.py" respawn="false" output="screen"/>
   <node name="cerebellum" pkg="demonstrator6" type="iba_cerebellum.py" respawn="false" output="screen"/>
   <node name="reactive_component" pkg="demonstrator6" type="iba_reactive_component.py" respawn="false" output="screen"/>
