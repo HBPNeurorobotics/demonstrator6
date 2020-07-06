@@ -1,9 +1,9 @@
-<ns1:bibi xmlns:ns1="http://schemas.humanbrainproject.eu/SP10/2014/BIBI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ns1:bibi 
+  xmlns:ns1="http://schemas.humanbrainproject.eu/SP10/2014/BIBI" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ns1:brainModel>
     <ns1:file>tutorial_baseball.py</ns1:file>
   </ns1:brainModel>
-  <ns1:transferFunction src="img_to_pred.py" active="true" xsi:type="ns1:PythonTransferFunction" />
-  <ns1:transferFunction src="find_object.py" active="true" xsi:type="ns1:PythonTransferFunction" />
-<!--<ns1:bodyModel robotId="arm">kuka_lbr_iiwa_generic_d6/model.sdf</ns1:bodyModel>-->
+  <ns1:transferFunction src="img_to_pred.py" active="true" priority="0" xsi:type="ns1:PythonTransferFunction" />
+  <ns1:transferFunction src="find_object.py" active="true" priority="0" xsi:type="ns1:PythonTransferFunction" />
 </ns1:bibi>
-

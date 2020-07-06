@@ -44,19 +44,20 @@
       },
       "content": [
         {
-          "type": "row",
+          "type": "column",
           "isClosable": true,
           "reorderEnabled": true,
           "title": "",
+          "width": 47.058823529411775,
           "content": [
             {
               "type": "stack",
-              "width": 50,
+              "width": 100,
               "isClosable": true,
               "reorderEnabled": true,
               "title": "",
               "activeItemIndex": 0,
-              "height": 100,
+              "height": 63.88773512134339,
               "content": [
                 {
                   "type": "component",
@@ -78,24 +79,24 @@
             },
             {
               "type": "stack",
+              "header": {},
               "isClosable": true,
               "reorderEnabled": true,
               "title": "",
               "activeItemIndex": 0,
-              "width": 50,
+              "height": 36.11226487865662,
               "content": [
                 {
                   "type": "component",
-                  "title": "Smach Editor",
-                  "id": "smach-editor",
+                  "title": "Video Stream",
+                  "id": "video-stream",
                   "componentName": "angularModuleComponent",
                   "componentState": {
                     "module": "exdFrontendApp",
-                    "angularDirective": "<smach-editor />",
-                    "singleton": true
+                    "angularDirective": "<video-stream />"
                   },
-                  "pwidth": 800,
-                  "pheight": 900,
+                  "pwidth": 600,
+                  "pheight": 400,
                   "isClosable": true,
                   "reorderEnabled": true
                 }
@@ -107,7 +108,6 @@
       "isClosable": true,
       "reorderEnabled": true,
       "title": "",
-      "width": 49.99999999999999,
       "openPopouts": [],
       "maximisedItemId": null
     }
