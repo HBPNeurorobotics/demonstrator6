@@ -1,0 +1,1626 @@
+<?xml version="1.0"?>
+<sdf version='1.6'>
+  <model name='lwa4p'>
+    <link name='arm_base_link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.29364</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_base_link_fixed_joint_lump__arm_0_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_0_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_base_link_fixed_joint_lump__arm_0_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_0_link.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+      <gravity>1</gravity>
+    </link>
+    <joint name='arm_base_joint' type='fixed'>
+      <child>arm_base_link</child>
+      <parent>world</parent>
+    </joint>
+    <link name='arm_1_link'>
+      <pose frame=''>0 0 0.11 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.29364</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_1_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_1_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_1_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_1_link.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>1</self_collide>
+      <gravity>1</gravity>
+    </link>
+    <joint name='arm_1_joint' type='revolute'>
+      <child>arm_1_link</child>
+      <parent>arm_base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.95</lower>
+          <upper>2.95</upper>
+          <effort>10000</effort>
+          <velocity>1.25</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='arm_2_link'>
+      <pose frame=''>0 0 0.11 1.5708 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.29364</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_2_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_2_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_2_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_2_link.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>1</self_collide>
+      <gravity>1</gravity>
+    </link>
+    <joint name='arm_2_joint' type='revolute'>
+      <child>arm_2_link</child>
+      <parent>arm_1_link</parent>
+      <axis>
+        <xyz>0 -1 -4e-06</xyz>
+        <limit>
+          <lower>-2.95</lower>
+          <upper>2.95</upper>
+          <effort>10000</effort>
+          <velocity>1.25</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='arm_3_link'>
+      <pose frame=''>0 -1e-06 0.46 1.57079 -0 3.14159</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.29364</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_3_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_3_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_3_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_3_link.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>1</self_collide>
+      <gravity>1</gravity>
+    </link>
+    <joint name='arm_3_joint' type='revolute'>
+      <child>arm_3_link</child>
+      <parent>arm_2_link</parent>
+      <axis>
+        <xyz>3e-06 1 4e-06</xyz>
+        <limit>
+          <lower>-2.95</lower>
+          <upper>2.95</upper>
+          <effort>10000</effort>
+          <velocity>1.25</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='arm_4_link'>
+      <pose frame=''>0 -1e-06 0.46 -0 0 -5e-06</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.29364</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_4_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_4_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_4_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_4_link.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>1</self_collide>
+      <gravity>1</gravity>
+    </link>
+    <joint name='arm_4_joint' type='revolute'>
+      <child>arm_4_link</child>
+      <parent>arm_3_link</parent>
+      <axis>
+        <xyz>0 -0 1</xyz>
+        <limit>
+          <lower>-2.95</lower>
+          <upper>2.95</upper>
+          <effort>10000</effort>
+          <velocity>1.25</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='arm_5_link'>
+      <pose frame=''>0 0.005262 0.765 1.5708 -0 3.14158</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.29364</mass>
+        <inertia>
+          <ixx>0.01</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.01</iyy>
+          <iyz>0</iyz>
+          <izz>0.01</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_5_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_5_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='arm_5_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_5_link.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>1</self_collide>
+      <gravity>1</gravity>
+    </link>
+    <joint name='arm_5_joint' type='revolute'>
+      <child>arm_5_link</child>
+      <parent>arm_4_link</parent>
+      <axis>
+        <xyz>8e-06 1 -4e-06</xyz>
+        <limit>
+          <lower>-2.95</lower>
+          <upper>2.95</upper>
+          <effort>10000</effort>
+          <velocity>1.25</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='arm_6_link'>
+      <pose frame=''>0 0.005262 0.765 0 -0 3.14158</pose>
+      <inertial>
+        <pose frame=''>0.040619 -0.013779 0.239465 0 -0 0</pose>
+        <mass>1.42668</mass>
+        <inertia>
+          <ixx>0.121628</ixx>
+          <ixy>0.000616705</ixy>
+          <ixz>-0.0119644</ixz>
+          <iyy>0.123801</iyy>
+          <iyz>0.00692997</iyz>
+          <izz>0.107811</izz>
+        </inertia>
+      </inertial>
+      <collision name='arm_6_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_6_link.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='arm_6_link_fixed_joint_lump__svh_hand_base_link_collision_1'>
+        <pose frame=''>0 0 0.08 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/base10.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='arm_6_link_fixed_joint_lump__svh_hand_e1_collision_2'>
+        <pose frame=''>0 0 0.08 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>-1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/h10.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='arm_6_link_fixed_joint_lump__svh_hand_virtual_k_collision_3'>
+        <pose frame=''>-1e-06 -0.02634 0.190001 -3.14159 -1.57079 -1.57089</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f20.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='arm_6_link_fixed_joint_lump__svh_hand_e2_collision_4'>
+        <pose frame=''>-0.0177 -0.00713 0.10748 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>-1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/h11.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='arm_6_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/lwa4p/arm_6_link.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Grey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <visual name='arm_6_link_fixed_joint_lump__svh_hand_base_link_visual_1'>
+        <pose frame=''>0 0 0.08 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/base10.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='arm_6_link_fixed_joint_lump__svh_hand_e1_visual_2'>
+        <pose frame=''>0 0 0.08 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>-1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/h10.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='arm_6_link_fixed_joint_lump__svh_hand_virtual_k_visual_3'>
+        <pose frame=''>-1e-06 -0.02634 0.190001 -3.14159 -1.57079 -1.57089</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f20.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='arm_6_link_fixed_joint_lump__svh_hand_e2_visual_4'>
+        <pose frame=''>-0.0177 -0.00713 0.10748 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>-1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/h11.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+      <gravity>1</gravity>
+    </link>
+    <joint name='arm_6_joint' type='revolute'>
+      <child>arm_6_link</child>
+      <parent>arm_5_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.947</lower>
+          <upper>2.947</upper>
+          <effort>20.1</effort>
+          <velocity>1.25</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_z'>
+      <pose frame=''>-0.0169 -0.007868 0.845 -0 0.2618 -1.5706</pose>
+      <inertial>
+        <pose frame=''>0 0.001783 0.162822 0 -0 0</pose>
+        <mass>0.0839</mass>
+        <inertia>
+          <ixx>0.00218508</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00280505</iyy>
+          <iyz>3.76347e-05</iyz>
+          <izz>0.00211004</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_z_collision'>
+        <pose frame=''>0 0 0.02442 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 -1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/d10.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_z_visual'>
+        <pose frame=''>0 0 0.02442 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 -1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/d10.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_Thumb_Opposition' type='revolute'>
+      <child>svh_hand_z</child>
+      <parent>arm_6_link</parent>
+      <axis>
+        <xyz>5.1e-05 -0.25882 0.965926</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.9879</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_a'>
+      <pose frame=''>-0.016898 -0.019764 0.889394 -1.88468 -0.577261 -2.96605</pose>
+      <inertial>
+        <pose frame=''>0.240205 0.010733 0.00019 0 -0 0</pose>
+        <mass>0.41222</mass>
+        <inertia>
+          <ixx>0.00413</ixx>
+          <ixy>0.00073</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.01679</iyy>
+          <iyz>0</iyz>
+          <izz>0.01796</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_a_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 -1 -1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/d11.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_a_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 -1 -1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/d11.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_Thumb_Flexion' type='revolute'>
+      <child>svh_hand_a</child>
+      <parent>svh_hand_z</parent>
+      <axis>
+        <xyz>-0.000196 0.965951 0.258727</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.9704</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_b'>
+      <pose frame=''>-0.056914 -0.026861 0.915862 -1.88468 -0.577261 -2.96605</pose>
+      <inertial>
+        <pose frame=''>0.123157 -0.008382 -2.7e-05 0 -0 0</pose>
+        <mass>0.08224</mass>
+        <inertia>
+          <ixx>0.00089</ixx>
+          <ixy>5e-05</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00139</iyy>
+          <iyz>0</iyz>
+          <izz>0.00103</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_b_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 -1 -1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/d12.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_b_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 -1 -1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/d12.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_j3' type='revolute'>
+      <child>svh_hand_b</child>
+      <parent>svh_hand_a</parent>
+      <axis>
+        <xyz>-0.000196 0.965951 0.258727</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.98506</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_c'>
+      <pose frame=''>-0.081667 -0.031251 0.932234 -1.88468 -0.577261 -2.96605</pose>
+      <inertial>
+        <pose frame=''>0.113729 0.01094 0 0 -0 0</pose>
+        <mass>0.06198</mass>
+        <inertia>
+          <ixx>0.00025</ixx>
+          <ixy>-0</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.00051</iyy>
+          <iyz>0</iyz>
+          <izz>0.00052</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_c_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 -1 -1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/d13.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_c_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 -1 -1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/d13.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_j4' type='revolute'>
+      <child>svh_hand_c</child>
+      <parent>svh_hand_b</parent>
+      <axis>
+        <xyz>-0.000196 0.965951 0.258727</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.406</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_virtual_l'>
+      <pose frame=''>-0.025 0.018392 0.955 -0 -1.5707 -1.5709</pose>
+      <inertial>
+        <pose frame=''>0.003634 0.000206 -0.09885 0 -0 0</pose>
+        <mass>0.02383</mass>
+        <inertia>
+          <ixx>0.00021</ixx>
+          <ixy>-0</ixy>
+          <ixz>-1e-05</ixz>
+          <iyy>0.00011</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00019</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_virtual_l_collision'>
+        <pose frame=''>0 0 0.01321 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f10.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_virtual_l_visual'>
+        <pose frame=''>0 0 0.01321 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f10.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_index_spread' type='revolute'>
+      <child>svh_hand_virtual_l</child>
+      <parent>arm_6_link</parent>
+      <axis>
+        <xyz>-0.000104 -1 -9.6e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.28833</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_l'>
+      <pose frame=''>-0.025 0.018392 0.955 -1.5707 -1.5707 -1.5709</pose>
+      <inertial>
+        <pose frame=''>0.261673 0.003521 0 0 -0 0</pose>
+        <mass>0.13003</mass>
+        <inertia>
+          <ixx>0.00051</ixx>
+          <ixy>-3e-05</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00335</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00344</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_l_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f11.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_l_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f11.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_Index_Finger_Proximal' type='revolute'>
+      <child>svh_hand_l</child>
+      <parent>svh_hand_virtual_l</parent>
+      <axis>
+        <xyz>1 -8e-06 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.79849</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_p'>
+      <pose frame=''>-0.025 0.018387 1.00304 -1.5707 -1.5707 -1.5709</pose>
+      <inertial>
+        <pose frame=''>0.1384 -0.004609 0 0 -0 0</pose>
+        <mass>0.03264</mass>
+        <inertia>
+          <ixx>0.00016</ixx>
+          <ixy>-0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00031</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00024</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_p_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f12.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_p_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f12.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_Index_Finger_Distal' type='revolute'>
+      <child>svh_hand_p</child>
+      <parent>svh_hand_l</parent>
+      <axis>
+        <xyz>1 -8e-06 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.334</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_t'>
+      <pose frame=''>-0.025 0.018385 1.02904 -1.5707 -1.5707 -1.5709</pose>
+      <inertial>
+        <pose frame=''>0.102924 0.000592 0 0 -0 0</pose>
+        <mass>0.0324</mass>
+        <inertia>
+          <ixx>9e-05</ixx>
+          <ixy>-1e-05</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.00017</iyy>
+          <iyz>0</iyz>
+          <izz>0.00017</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_t_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f13.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_t_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f13.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_j14' type='revolute'>
+      <child>svh_hand_t</child>
+      <parent>svh_hand_p</parent>
+      <axis>
+        <xyz>1 -8e-06 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.394</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_k'>
+      <pose frame=''>0 0.018392 0.955 -1.5707 -1.5707 -1.5709</pose>
+      <inertial>
+        <pose frame=''>0.271122 0.00413 0 0 -0 0</pose>
+        <mass>0.13474</mass>
+        <inertia>
+          <ixx>0.00052</ixx>
+          <ixy>-3e-05</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.0037</iyy>
+          <iyz>-0</iyz>
+          <izz>0.0038</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_k_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f21.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_k_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f21.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_Middle_Finger_Proximal' type='revolute'>
+      <child>svh_hand_k</child>
+      <parent>arm_6_link</parent>
+      <axis>
+        <xyz>1 -8e-06 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.79849</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_o'>
+      <pose frame=''>0 0.018387 1.00504 -1.5707 -1.5707 -1.5709</pose>
+      <inertial>
+        <pose frame=''>0.16683 -0.003774 0 0 -0 0</pose>
+        <mass>0.0422</mass>
+        <inertia>
+          <ixx>0.0002</ixx>
+          <ixy>0</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.00047</iyy>
+          <iyz>0</iyz>
+          <izz>0.0004</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_o_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f22.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_o_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f22.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_Middle_Finger_Distal' type='revolute'>
+      <child>svh_hand_o</child>
+      <parent>svh_hand_k</parent>
+      <axis>
+        <xyz>1 -8e-06 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.334</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_s'>
+      <pose frame=''>0 0.018384 1.03704 -1.5707 -1.5707 -1.5709</pose>
+      <inertial>
+        <pose frame=''>0.102794 0.00042 0 0 -0 0</pose>
+        <mass>0.03239</mass>
+        <inertia>
+          <ixx>9e-05</ixx>
+          <ixy>-1e-05</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00017</iyy>
+          <iyz>0</iyz>
+          <izz>0.00017</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_s_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f23.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_s_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f23.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_j15' type='revolute'>
+      <child>svh_hand_s</child>
+      <parent>svh_hand_o</parent>
+      <axis>
+        <xyz>1 -8e-06 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.334</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_virtual_i'>
+      <pose frame=''>0.043755 0.018391 0.9385 -1.5707 -1.5707 3.14158</pose>
+      <inertial>
+        <pose frame=''>0.003653 4.4e-05 0.100085 0 -0 0</pose>
+        <mass>0.02377</mass>
+        <inertia>
+          <ixx>0.00021</ixx>
+          <ixy>0</ixy>
+          <ixz>1e-05</ixz>
+          <iyy>0.00011</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00019</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_virtual_i_collision'>
+        <pose frame=''>0 0 -0.01321 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f40.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_virtual_i_visual'>
+        <pose frame=''>0 0 -0.01321 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f40.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_Finger_Spread' type='revolute'>
+      <child>svh_hand_virtual_i</child>
+      <parent>arm_6_link</parent>
+      <axis>
+        <xyz>-8.8e-05 1 -0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.5829</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_i'>
+      <pose frame=''>0.043755 0.018391 0.9385 0 -1.5707 3.14158</pose>
+      <inertial>
+        <pose frame=''>0.232293 0.00622 0 0 -0 0</pose>
+        <mass>0.12544</mass>
+        <inertia>
+          <ixx>0.00049</ixx>
+          <ixy>6e-05</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.00316</iyy>
+          <iyz>0</iyz>
+          <izz>0.00328</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_i_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f41.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_i_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f41.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_Pinky' type='revolute'>
+      <child>svh_hand_i</child>
+      <parent>svh_hand_virtual_i</parent>
+      <axis>
+        <xyz>1 -8e-06 9.6e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.98175</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_m'>
+      <pose frame=''>0.043751 0.018391 0.98304 0 -1.5707 3.14158</pose>
+      <inertial>
+        <pose frame=''>0.119665 -0.009328 0 0 -0 0</pose>
+        <mass>0.02488</mass>
+        <inertia>
+          <ixx>0.00013</ixx>
+          <ixy>-0</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.00023</iyy>
+          <iyz>0</iyz>
+          <izz>0.00016</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_m_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f42.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_m_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f42.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_j13' type='revolute'>
+      <child>svh_hand_m</child>
+      <parent>svh_hand_i</parent>
+      <axis>
+        <xyz>1 -8e-06 9.6e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.334</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_q'>
+      <pose frame=''>0.043749 0.018391 1.00504 0 -1.5707 3.14158</pose>
+      <inertial>
+        <pose frame=''>0.102896 0.000307 0 0 -0 0</pose>
+        <mass>0.03234</mass>
+        <inertia>
+          <ixx>9e-05</ixx>
+          <ixy>-1e-05</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.00017</iyy>
+          <iyz>0</iyz>
+          <izz>0.00017</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_q_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f43.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_q_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f43.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_j17' type='revolute'>
+      <child>svh_hand_q</child>
+      <parent>svh_hand_m</parent>
+      <axis>
+        <xyz>1 -8e-06 9.6e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.3971</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_virtual_j'>
+      <pose frame=''>0.022255 0.018392 0.948 -1.5707 -1.5707 3.14158</pose>
+      <inertial>
+        <pose frame=''>0.003805 0.000386 0.100079 0 -0 0</pose>
+        <mass>0.02377</mass>
+        <inertia>
+          <ixx>0.00021</ixx>
+          <ixy>0</ixy>
+          <ixz>1e-05</ixz>
+          <iyy>0.00011</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00019</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_virtual_j_collision'>
+        <pose frame=''>0 0 -0.01321 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f30.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_virtual_j_visual'>
+        <pose frame=''>0 0 -0.01321 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f30.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_ring_spread' type='revolute'>
+      <child>svh_hand_virtual_j</child>
+      <parent>arm_6_link</parent>
+      <axis>
+        <xyz>-8.8e-05 1 -0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.28833</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_j'>
+      <pose frame=''>0.022255 0.018392 0.948 0 -1.5707 3.14158</pose>
+      <inertial>
+        <pose frame=''>0.258283 -0.00154 0 0 -0 0</pose>
+        <mass>0.1377</mass>
+        <inertia>
+          <ixx>0.00055</ixx>
+          <ixy>0.00018</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.00411</iyy>
+          <iyz>0</iyz>
+          <izz>0.00426</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_j_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f31.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_j_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f31.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_Ring_Finger' type='revolute'>
+      <child>svh_hand_j</child>
+      <parent>svh_hand_virtual_j</parent>
+      <axis>
+        <xyz>1 -8e-06 9.6e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.98175</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_n'>
+      <pose frame=''>0.02225 0.018392 0.99804 0 -1.5707 3.14158</pose>
+      <inertial>
+        <pose frame=''>0.166851 -0.00362 0 0 -0 0</pose>
+        <mass>0.04207</mass>
+        <inertia>
+          <ixx>0.00019</ixx>
+          <ixy>0</ixy>
+          <ixz>-0</ixz>
+          <iyy>0.00047</iyy>
+          <iyz>0</iyz>
+          <izz>0.0004</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_n_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f32.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_n_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f32.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_j12' type='revolute'>
+      <child>svh_hand_n</child>
+      <parent>svh_hand_j</parent>
+      <axis>
+        <xyz>1 -8e-06 9.6e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.334</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='svh_hand_r'>
+      <pose frame=''>0.022247 0.018392 1.03004 0 -1.5707 3.14158</pose>
+      <inertial>
+        <pose frame=''>0.102676 0.000301 0 0 -0 0</pose>
+        <mass>0.03229</mass>
+        <inertia>
+          <ixx>9e-05</ixx>
+          <ixy>-1e-05</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00017</iyy>
+          <iyz>-0</iyz>
+          <izz>0.00017</izz>
+        </inertia>
+      </inertial>
+      <collision name='svh_hand_r_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f33.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='svh_hand_r_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://schunk_lwa4p_with_svh_hand/meshes/svh/f33.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='svh_hand_j16' type='revolute'>
+      <child>svh_hand_r</child>
+      <parent>svh_hand_n</parent>
+      <axis>
+        <xyz>1 -8e-06 9.6e-05</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>1.395</upper>
+          <effort>1000</effort>
+          <velocity>1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+      <legacyModeNS>0</legacyModeNS>
+      <robotNamespace>/arm</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'>
+      <legacyModeNS>0</legacyModeNS>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+    <plugin name='svh_hand_j3_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Thumb_Flexion</joint>
+      <mimicJoint>svh_hand_j3</mimicJoint>
+      <hasPID/>
+      <multiplier>1.01511</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+    <plugin name='svh_hand_j4_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Thumb_Flexion</joint>
+      <mimicJoint>svh_hand_j4</mimicJoint>
+      <hasPID/>
+      <multiplier>1.44889</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+    <plugin name='svh_hand_j14_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Index_Finger_Distal</joint>
+      <mimicJoint>svh_hand_j14</mimicJoint>
+      <hasPID/>
+      <multiplier>1.045</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+    <plugin name='svh_hand_j15_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Middle_Finger_Distal</joint>
+      <mimicJoint>svh_hand_j15</mimicJoint>
+      <hasPID/>
+      <multiplier>1.0454</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+    <plugin name='svh_hand_j12_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Ring_Finger</joint>
+      <mimicJoint>svh_hand_j12</mimicJoint>
+      <hasPID/>
+      <multiplier>1.3588</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+    <plugin name='svh_hand_j16_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Ring_Finger</joint>
+      <mimicJoint>svh_hand_j16</mimicJoint>
+      <hasPID/>
+      <multiplier>1.42093</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+    <plugin name='svh_hand_j13_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Pinky</joint>
+      <mimicJoint>svh_hand_j13</mimicJoint>
+      <hasPID/>
+      <multiplier>1.3588</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+    <plugin name='svh_hand_j17_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Pinky</joint>
+      <mimicJoint>svh_hand_j17</mimicJoint>
+      <hasPID/>
+      <multiplier>1.42307</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+    <plugin name='svh_hand_index_spread_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Finger_Spread</joint>
+      <mimicJoint>svh_hand_index_spread</mimicJoint>
+      <hasPID/>
+      <multiplier>0.5</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+    <static>0</static>
+    <plugin name='svh_hand_ring_spread_mimic_joint_plugin' filename='libroboticsgroup_gazebo_mimic_joint_plugin.so'>
+      <joint>svh_hand_Finger_Spread</joint>
+      <mimicJoint>svh_hand_ring_spread</mimicJoint>
+      <hasPID/>
+      <multiplier>0.5</multiplier>
+      <offset>0</offset>
+      <sensitiveness>0.0</sensitiveness>
+      <maxEffort>100.0</maxEffort>
+      <robotNamespace>/svh/svh_ros_control_node</robotNamespace>
+    </plugin>
+  </model>
+</sdf>
