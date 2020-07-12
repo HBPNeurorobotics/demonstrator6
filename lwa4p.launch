@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find demonstrator6_description)/urdf/lwa4p/lwa4p_with_hand.urdf.xacro'" />
+  <group ns="arm">
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find sacc_rec_grasp)/config/arm_controllers.yaml" command="load"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find demonstrator6_description)/urdf/lwa4p/lwa4p_with_hand.urdf.xacro'" />
+
+    <!-- load the controllers -->
+    <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+      output="screen" args="arm_joint_state_controller arm_eff_traj_controller">
+    </node>
+
+    <node name="joint_state_relay" pkg="topic_tools" type="relay" args="joint_states /joint_states"/>
+  </group>
+
+  <group ns="svh">
+    <group ns="svh_ros_control_node">
+      <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find demonstrator6_description)/urdf/lwa4p/lwa4p_with_hand.urdf.xacro'" />
+      <rosparam file="$(find sacc_rec_grasp)/config/svh_controllers.yaml" command="load"/>
+      <node name="svh_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+            output="screen" args="--timeout 90
+                                  svh_joint_state_controller
+                                  svh_eff_based_traj_controller_hand
+                                  "/>
+      <node name="joint_state_relay" pkg="topic_tools" type="relay" args="joint_states /joint_states"/>
+    </group>
+  </group>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+  </node>
+
+  <node name="manager_module" pkg="iba_multimodule_experiment" type="manager_module.py" respawn="false" output="screen"/>
+  <node name="cerebellum" pkg="demonstrator6" type="iba_cerebellum.py" respawn="false" output="screen"/>
+  <node name="reactive_component" pkg="demonstrator6" type="iba_reactive_component.py" respawn="false" output="screen"/>
+</launch>

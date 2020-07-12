@@ -377,8 +377,14 @@
     <!-- ########### camera end ########### -->
 
     <!--Kuka Arm-->
-    <include>
+    <!--<include>
         <uri>model://kuka_iiwa_14_prismatic_gripper</uri>
+        <pose>1.0 -0.6 0.6 0 -0 0</pose>
+    </include>-->
+
+    <!--Schunk Arm-->
+    <include>
+        <uri>model://schunk_lwa4p_with_svh_hand</uri>
         <pose>1.0 -0.6 0.6 0 -0 0</pose>
     </include>
 
