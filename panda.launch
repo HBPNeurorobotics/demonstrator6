@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find franka_description)/robots/panda_arm_hand.urdf.xacro'" />
+  <group ns="panda">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find franka_description)/robots/panda_arm_hand.urdf.xacro'" />
+    <rosparam file="$(find demonstrator6_description)/config/ros_controllers_panda.yaml" command="load"/>
+    <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" args="joint_state_controller position_joint_trajectory_controller franka_gripper">
+    </node>
+    <node name="joint_state_relay" pkg="topic_tools" type="relay" args="joint_states /joint_states"/>
+  </group>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+  </node>
+
+  <node name="manager_module" pkg="iba_multimodule_experiment" type="manager_module.py" respawn="false" output="screen"/>
+  <node name="cerebellum" pkg="demonstrator6" type="iba_cerebellum.py" respawn="false" output="screen"/>
+  <node name="reactive_component" pkg="demonstrator6" type="iba_reactive_component.py" respawn="false" output="screen"/>
+</launch>

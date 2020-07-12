@@ -383,8 +383,14 @@
     </include>-->
 
     <!--Schunk Arm-->
-    <include>
+    <!--<include>
         <uri>model://schunk_lwa4p_with_svh_hand</uri>
+        <pose>1.0 -0.6 0.6 0 -0 0</pose>
+    </include>-->
+
+    <!--Panda-->
+    <include>
+        <uri>model://panda</uri>
         <pose>1.0 -0.6 0.6 0 -0 0</pose>
     </include>
 

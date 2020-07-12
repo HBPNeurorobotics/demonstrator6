@@ -23,5 +23,6 @@
     <cameraLookAt x="0" y="0" z="0.6" />
   </cameraPose>
 <!--   <rosLaunch src="kuka.launch" /> -->
-  <rosLaunch src="lwa4p.launch" />
+<!--   <rosLaunch src="lwa4p.launch" /> -->
+  <rosLaunch src="panda.launch" />
 </ExD>
