@@ -40,7 +40,7 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_pos_topic, pred_msg,
     pad            = 8 if scale == 4 else 0  # For up/downsampling to work
     model_name     = 'model' + str(n_feat)+'.pt'
     new_model_path = os.getcwd() + '/resources/' + model_name
-    trained_w_path = exp_dir + model_name    # exp_dir computed in specs.py 
+    trained_w_path = exp_dir + model_name    # exp_dir computed in specs.py
     device         = 'cpu'
     if torch.cuda.is_available():
         device = 'cuda'
@@ -52,7 +52,7 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_pos_topic, pred_msg,
     initial_lr     = 1e-4   # Then, the learning rate is scheduled with cosine annealing
     epoch_loop     = 100    # Every epoch_loop, a prediction is made, to monitor progress
     n_batches      = 1      # For now, not usable (could roll images for multiple batches)
-    
+
     # Check that the simulation frame is far enough
     if camera.value is not None and int(t*50) % underSmpl == 0:
 
@@ -93,7 +93,7 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_pos_topic, pred_msg,
                         clientLogger.info('Learning weights loaded in the model.')
                 except:
                     clientLogger.info('No existing weight file found. Model initialized randomly.')
-            
+
         # Initialize some variables needed for training
         time_loss_w = [1.0/(nt-1) if s > 0 else 0.0 for s in range(nt)]
         if t_extrap < nt:
@@ -176,8 +176,8 @@ def img_to_pred(t, camera, plot_topic, latent_topic, pred_pos_topic, pred_msg,
                 inpt_msg[:,s*img_shp[1]:(s+1)*img_shp[1],:] = model_inputs.value[0,t_extrap+s,:,:,pad:-pad]
 
             # Build and send the display message
-            plot_msg = torch.cat((pred_msg.value, inpt_msg), 2).numpy().transpose(2,1,0)*int(normalizer)
-            if C_channels == 1:
-                plot_msg = np.dstack((plot_msg, plot_msg, plot_msg))
-            plot_topic  .send_message(CvBridge().cv2_to_imgmsg(plot_msg.astype(np.uint8),'rgb8'))
-            
+            #plot_msg = torch.cat((pred_msg.value, inpt_msg), 2).numpy().transpose(2,1,0)*int(normalizer)
+            #if C_channels == 1:
+                #plot_msg = np.dstack((plot_msg, plot_msg, plot_msg))
+            #plot_topic  .send_message(CvBridge().cv2_to_imgmsg(plot_msg.astype(np.uint8),'rgb8'))
+
